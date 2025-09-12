@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let list = ["rice", "bean", "rice", "pasta", "bean", "water"];
+
+        // const newList = list.filter((item, index) => {
+        //     console.log(item);
+        //     console.log("-----------");
+        //     console.log(index);
+
+        //     return list.indexOf(item) === index;
+        // });
+
+        // console.log(newList);
+
+
+
+        // let ages = [18, 15, 10, 10, 16, 19, 20];
+
+        // const ageMaior = ages.filter((age) => {
+        //     return age >= 18;
+        // });
+
+        // console.log(ageMaior);
+
+
+
+        // let price = [25.50, 19.90, 3.50, 100.00, 12.75];
+
+        // const sumPrice = price.reduce((acc, p) => {
+        //     console.log(`Acc: ${acc}`);
+        //     console.log("---------");
+        //     console.log(`Price: ${p}`);
+
+        //     return acc + p;
+        // }, 0);
+
+        // console.log(sumPrice);
+
+
+
+        // let prices = [100, 50, 80, 200];
+
+        // const newPricesWithDiscount = prices.map((price) => {
+        //     const discount = price * 0.10;
+        //     const newPrice = price - discount;
+            
+        //     return newPrice;
+        // });
+
+        // console.log(newPricesWithDiscount);
+
+
+
+        // let names = ["Ana", "João", "Maria", "Pedro", "Carlos", "Paulo"];
+
+        // let queryName = prompt("Typed a name for query");
+
+        // if(names.includes(queryName)){
+        //     console.log("Accepted, you this in list!")
+        // }
+        // else{
+        //     console.log("Denied, you not this in list!")
+        // }
+        
+
+
+        // let tasks = ["Zebra", "Estudar", "Comer", "Dormir", "Trabalhar", "Aguardar"];
+        // let tasksSorted = tasks.sort();
+        // console.log(tasksSorted);
+
+        // const num = [10, 3, 7, 8, 9];
+        // const numSorted = num.sort((a, b) => a - b);
+        // console.log(numSorted);
+
+        const calculateDiscount = (price, discount) => {
+            const priceDiscount = price * discount;
+            const newPrice = price - priceDiscount;
+            return newPrice;
+        };
+        let products = [
+            { 
+                name: "Notebook", 
+                price: 2500, 
+                quantity: 3 
+            },
+            { 
+                name: "Mouse", 
+                price: 100, 
+                quantity: 0 
+            },
+            { 
+                name: "Teclado", 
+                price: 200, 
+                quantity: 5 
+            },
+            { 
+                name: "Monitor", 
+                price: 1200, 
+                quantity: 2 
+            }
+        ];
+
+        const stock = products
+        .filter(({quantity}) => quantity > 0)
+        .sort((a, b) => a.price - b.price);
+
+        stock.forEach((product) => {
+            const nameProduct = product.name;
+            const productSelect = product.price;
+            const priceDiscount = calculateDiscount(productSelect, 0.15);
+
+            console.log(`Product: ${nameProduct}`);
+            console.log(`Price without discount: R$${productSelect}`);
+            console.log(`Price with discount: R$${priceDiscount}`);
+        });
+
+       
+
+        
+
+
+
+    </script>
+</body>
+</html>
