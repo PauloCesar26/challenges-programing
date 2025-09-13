@@ -1,0 +1,15 @@
+Crie um programa onde o usuário possa cadastrar contatos com nome, telefone e email.
+O usuário pode pesquisar um contato pelo nome. Se encontrado, o programa mostra as informações.
+
+Button to add contact
+When is click show form with name, number and email
+hidden title and button to add
+When add o form go to be submitted and sent the datas
+Display in the page
+With button of delete and update 
+
+MVP:
+Create contact
+Delete and update
+Search
+Show form to add
