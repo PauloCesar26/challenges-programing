@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    while(true){
+        const option = prompt("Enter number 1 to execute program \n or number 0 to leave program");
+        console.log(option);
+
+        if(option === 1){
+            const infoProduct = {};
+            const nameProduct = prompt("Enter the product name");
+            const priceProduct = prompt("Enter the price of product");
+            const qtdProduct = prompt("Enter the qtd of product");
+        
+            infoProduct.name = nameProduct;
+            infoProduct.price = parseFloat(priceProduct).toFixed(2);
+            infoProduct.qtd = parseInt(qtdProduct);
+        
+            console.log(infoProduct);
+        }
+        else if(option === 0){
+            console.log("Left the program");
+            break;
+        }
+        else{
+            console.log("Invalid option");
+        }
+    }
+
+
+    </script>
+</body>
+</html>
