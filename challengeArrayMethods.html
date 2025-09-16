@@ -81,6 +81,7 @@
 
         // _______________________________________________________________________________
 
+        /* 
         const calculateDiscount = (price, discount) => {
             const priceDiscount = price * discount;
             const newPrice = price - priceDiscount;
@@ -122,6 +123,54 @@
             console.log(`Price without discount: R$${productSelect}`);
             console.log(`Price with discount: R$${priceDiscount}`);
         });
+        */
+
+
+
+        let contacts = [
+            {
+                name: "Paulo",
+                phone: "47"
+            },
+            { 
+                name: "Ana Clara", 
+                phone: "1111-1111" 
+            },
+            { 
+                name: "Carlos Silva", 
+                phone: "2222-2222" 
+            },
+            { 
+                name: "Mariana Costa", 
+                phone: "3333-3333" },
+            { 
+                name: "Pedro Santos", 
+                phone: "4444-4444" 
+            }
+        ];
+        const namesContacts = contacts.map(({name}) => name);
+        console.log(contacts);
+        console.log(namesContacts);
+        
+        const searchName = prompt("Typed a name to search").toLowerCase();
+        const nameFilterSearch = namesContacts.filter(name => name.toLowerCase() === searchName);
+
+        if(nameFilterSearch.length > 0){
+            console.log("Name found");
+
+            nameFilterSearch.forEach(name => console.log(`Name: ${name.toUpperCase()}`));
+            console.log(nameFilterSearch);
+        }
+        else{
+            console.log("Name not found");
+        }
+        
+        
+        
+
+
+
+
 
        
 
