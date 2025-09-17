@@ -7,32 +7,48 @@
 </head>
 <body>
     <script>
-    while(true){
-        const option = prompt("Enter number 1 to execute program \n or number 0 to leave program");
-        console.log(option);
+        // 1) Challenge calculate shopping
+        const products = [];
+        let addMoreProducts = true;
 
-        if(option === 1){
-            const infoProduct = {};
+        const calculateDiscount = (price, discount) => {
+            const priceDiscount = price * discount;
+            const newPrice = price - priceDiscount;
+            return newPrice;
+        };
+
+        while(addMoreProducts){
             const nameProduct = prompt("Enter the product name");
             const priceProduct = prompt("Enter the price of product");
             const qtdProduct = prompt("Enter the qtd of product");
-        
-            infoProduct.name = nameProduct;
-            infoProduct.price = parseFloat(priceProduct).toFixed(2);
-            infoProduct.qtd = parseInt(qtdProduct);
-        
-            console.log(infoProduct);
-        }
-        else if(option === 0){
-            console.log("Left the program");
-            break;
-        }
-        else{
-            console.log("Invalid option");
-        }
-    }
 
+            const infoProduct = {
+                name: nameProduct,
+                price: parseFloat(priceProduct).toFixed(2),
+                qtd: parseInt(qtdProduct),
+            };
 
+            products.push(infoProduct);
+
+            const more = prompt("Do you want add more products? s/n").toLowerCase();
+            if(more !== "s"){
+                addMoreProducts = false;
+            }
+        }
+
+        const pricesProducts = products.map((p) => {
+            return p.price * p.qtd;
+        });
+        const sumPrice = pricesProducts.reduce((acc, p) => acc + Number(p), 0);
+        
+        console.log(products);
+        console.log("--------------");
+        console.log(`Sum of prices: ${parseFloat(sumPrice).toFixed(2)}`);
+        console.log("--------------");
+
+        if(sumPrice > 500){
+            console.log(`The value of your buy is bigger that 500, so you get 10% off \nNew Price your buy: ${calculateDiscount(sumPrice, 0.10)}`);
+        }
     </script>
 </body>
 </html>
