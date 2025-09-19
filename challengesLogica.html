@@ -8,47 +8,119 @@
 <body>
     <script>
         // 1) Challenge calculate shopping
-        const products = [];
-        let addMoreProducts = true;
+        // const products = [];
+        // let addMoreProducts = true;
 
-        const calculateDiscount = (price, discount) => {
-            const priceDiscount = price * discount;
-            const newPrice = price - priceDiscount;
-            return newPrice;
-        };
+        // const calculateDiscount = (price, discount) => {
+        //     const priceDiscount = price * discount;
+        //     const newPrice = price - priceDiscount;
+        //     return newPrice;
+        // };
 
-        while(addMoreProducts){
-            const nameProduct = prompt("Enter the product name");
-            const priceProduct = prompt("Enter the price of product");
-            const qtdProduct = prompt("Enter the qtd of product");
+        // while(addMoreProducts){
+        //     const nameProduct = prompt("Enter the product name");
+        //     const priceProduct = prompt("Enter the price of product");
+        //     const qtdProduct = prompt("Enter the qtd of product");
 
-            const infoProduct = {
-                name: nameProduct,
-                price: parseFloat(priceProduct).toFixed(2),
-                qtd: parseInt(qtdProduct),
-            };
+        //     const infoProduct = {
+        //         name: nameProduct,
+        //         price: parseFloat(priceProduct).toFixed(2),
+        //         qtd: parseInt(qtdProduct),
+        //     };
 
-            products.push(infoProduct);
+        //     products.push(infoProduct);
 
-            const more = prompt("Do you want add more products? s/n").toLowerCase();
-            if(more !== "s"){
-                addMoreProducts = false;
+        //     const more = prompt("Do you want add more products? s/n").toLowerCase();
+        //     if(more !== "s"){
+        //         addMoreProducts = false;
+        //     }
+        // }
+
+        // const pricesProducts = products.map((p) => {
+        //     return p.price * p.qtd;
+        // });
+        // const sumPrice = pricesProducts.reduce((acc, p) => acc + Number(p), 0);
+        
+        // console.log(products);
+        // console.log("--------------");
+        // console.log(`Sum of prices: ${parseFloat(sumPrice).toFixed(2)}`);
+        // console.log("--------------");
+
+        // if(sumPrice > 500){
+        //     console.log(`The value of your buy is bigger that 500, so you get 10% off \nNew Price your buy: ${calculateDiscount(sumPrice, 0.10)}`);
+        // }
+
+
+        // _______________________________________________________________________________
+
+        // Algoritmo:
+        // 1 - Verificar se é a loja que está entrando ou um usuario
+        // 2 - Se for a loja:
+        // 2.1 - Vai digitar a senha para acessar
+        // 2.2 - Acessando, vai adicionar os produtos
+        // 3 - Se não for a loja:
+        // 3.1 - User vai poder pedir um produto: nome e quantidade
+        // System vai verificar se tem no estoque e retorna para o user
+
+        const storeStock = [];
+        const storePassword = 123;
+        let accessStore = false;
+        let login = true;
+
+        while(login){
+            const checkUser = prompt("Do you is the store? s/n - Digite sair para cancelar a operação").toLowerCase();
+    
+            if(checkUser === "s"){
+                while(true){
+                    const enterPassword = prompt("Enter with password of store to access the store");
+                    
+                    if(Number(enterPassword) === storePassword){
+                        accessStore = true;
+                        
+                        if(accessStore){
+                            let addMoreProductsStock = true;
+            
+                            while(addMoreProductsStock){
+                                const nameProduct = prompt("Enter the product name");
+                                const priceProduct = prompt("Enter the price of product");
+                                const qtdProduct = prompt("Enter the qtd of product");
+            
+                                const infoProduct = {
+                                    name: nameProduct,
+                                    price: parseFloat(priceProduct).toFixed(2),
+                                    qtd: parseInt(qtdProduct),
+                                };
+            
+                                storeStock.push(infoProduct);
+            
+                                const more = prompt("Do you want add more products? s/n").toLowerCase();
+                                
+                                if(more !== "s"){
+                                    addMoreProductsStock = false;
+                                }    
+                            }
+            
+                            console.log(storeStock);
+                        }break;
+                    }
+                    else{
+                        accessStore = false;
+                        console.log("Invalid password!!");
+                    }
+                }
+            }
+            else if(checkUser === "n"){
+                console.log("User");
+            }
+            else if(checkUser === "sair"){
+                console.log("Operation cancelad!");
+                login = false;
+            }
+            else{
+                console.log("Invalid option!");
             }
         }
 
-        const pricesProducts = products.map((p) => {
-            return p.price * p.qtd;
-        });
-        const sumPrice = pricesProducts.reduce((acc, p) => acc + Number(p), 0);
-        
-        console.log(products);
-        console.log("--------------");
-        console.log(`Sum of prices: ${parseFloat(sumPrice).toFixed(2)}`);
-        console.log("--------------");
-
-        if(sumPrice > 500){
-            console.log(`The value of your buy is bigger that 500, so you get 10% off \nNew Price your buy: ${calculateDiscount(sumPrice, 0.10)}`);
-        }
     </script>
 </body>
 </html>
