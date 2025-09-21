@@ -110,7 +110,12 @@
                 }
             }
             else if(checkUser === "n"){
-                console.log("User");
+
+                const makeOrderNameProduct = prompt("Enter the name product to make order");
+                const makeOrderQtdProduct = prompt("Enter the qtd product to make order:");
+
+                console.log(makeOrderNameProduct);
+                console.log(makeOrderQtdProduct);
             }
             else if(checkUser === "sair"){
                 console.log("Operation cancelad!");
@@ -120,6 +125,8 @@
                 console.log("Invalid option!");
             }
         }
+
+
 
     </script>
 </body>
