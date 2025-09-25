@@ -62,69 +62,154 @@
         // 3.1 - User vai poder pedir um produto: nome e quantidade
         // System vai verificar se tem no estoque e retorna para o user
 
-        const storeStock = [];
-        const storePassword = 123;
-        let accessStore = false;
-        let login = true;
+        // const storeStock = [];
+        // const storePassword = 123;
+        // let accessStore = false;
+        // let login = true;
 
-        while(login){
-            const checkUser = prompt("Do you is the store? s/n - Digite sair para cancelar a operação").toLowerCase();
+        // while(login){
+        //     const checkUser = prompt("Do you is the store? s/n - Digite sair para cancelar a operação").toLowerCase();
     
-            if(checkUser === "s"){
-                while(true){
-                    const enterPassword = prompt("Enter with password of store to access the store");
+        //     if(checkUser === "s"){
+        //         while(true){
+        //             const enterPassword = prompt("Enter with password of store to access the store");
                     
-                    if(Number(enterPassword) === storePassword){
-                        accessStore = true;
+        //             if(Number(enterPassword) === storePassword){
+        //                 accessStore = true;
                         
-                        if(accessStore){
-                            let addMoreProductsStock = true;
+        //                 if(accessStore){
+        //                     let addMoreProductsStock = true;
             
-                            while(addMoreProductsStock){
-                                const nameProduct = prompt("Enter the product name");
-                                const priceProduct = prompt("Enter the price of product");
-                                const qtdProduct = prompt("Enter the qtd of product");
+        //                     while(addMoreProductsStock){
+        //                         const nameProduct = prompt("Enter the product name");
+        //                         const priceProduct = prompt("Enter the price of product");
+        //                         const qtdProduct = prompt("Enter the qtd of product");
             
-                                const infoProduct = {
-                                    name: nameProduct,
-                                    price: parseFloat(priceProduct).toFixed(2),
-                                    qtd: parseInt(qtdProduct),
-                                };
+        //                         const infoProduct = {
+        //                             name: nameProduct,
+        //                             price: parseFloat(priceProduct).toFixed(2),
+        //                             qtd: parseInt(qtdProduct),
+        //                         };
             
-                                storeStock.push(infoProduct);
+        //                         storeStock.push(infoProduct);
             
-                                const more = prompt("Do you want add more products? s/n").toLowerCase();
+        //                         const more = prompt("Do you want add more products? s/n").toLowerCase();
                                 
-                                if(more !== "s"){
-                                    addMoreProductsStock = false;
-                                }    
-                            }
+        //                         if(more !== "s"){
+        //                             addMoreProductsStock = false;
+        //                         }    
+        //                     }
             
-                            console.log(storeStock);
-                        }break;
-                    }
-                    else{
-                        accessStore = false;
-                        console.log("Invalid password!!");
-                    }
-                }
-            }
-            else if(checkUser === "n"){
+        //                     console.log(storeStock);
+        //                 }break;
+        //             }
+        //             else{
+        //                 accessStore = false;
+        //                 console.log("Invalid password!!");
+        //             }
+        //         }
+        //     }
+        //     else if(checkUser === "n"){
 
-                const makeOrderNameProduct = prompt("Enter the name product to make order");
-                const makeOrderQtdProduct = prompt("Enter the qtd product to make order:");
+        //         const makeOrderNameProduct = prompt("Enter the name product to make order");
+        //         const makeOrderQtdProduct = prompt("Enter the qtd product to make order:");
 
-                console.log(makeOrderNameProduct);
-                console.log(makeOrderQtdProduct);
+        //         console.log(makeOrderNameProduct);
+        //         console.log(makeOrderQtdProduct);
+        //     }
+        //     else if(checkUser === "sair"){
+        //         console.log("Operation cancelad!");
+        //         login = false;
+        //     }
+        //     else{
+        //         console.log("Invalid option!");
+        //     }
+        // }
+
+        // _______________________________________________________________________________
+
+
+        const patientList = [
+            {
+                name: "Paulo",
+                age: 18,
+                password: 1
+            },
+            {
+                name: "Cesar",
+                age: 55,
+                password: 2
+            },
+            {
+                name: "Katia",
+                age: 55,
+                password: 3
+            },
+            {
+                name: "Elisa",
+                age: 16,
+                password: 4
+            },
+            {
+                name: "Milena",
+                age: 27,
+                password: 5
+            },
+            {
+                name: "Gloria",
+                age: 80,
+                password: 6
+            },
+            {
+                name: "Maria",
+                age: 81,
+                password: 7
+            },
+        ];
+        
+        const sortedListPatient = () => {
+            const sortListPatient = patientList.sort((a, b) => {
+                const patientA = a.age >= 60 ? 0 : 1;
+                const patientB = b.age >= 60 ? 0 : 1;
+                
+                if(patientA !== patientB) return patientA - patientB;
+                return a.password - b.password;
+            });
+
+            return sortListPatient;
+        };
+        
+        const addPatientList = (name, age, password) => {
+            const newPatient = {
+                name: name,
+                age: age,
+                password: password
             }
-            else if(checkUser === "sair"){
-                console.log("Operation cancelad!");
-                login = false;
+
+            patientList.push(newPatient);
+            sortedListPatient();
+
+            console.log(`Patient add with success: ${name}`);
+        };
+
+        const displayListPatient = () => {
+            sortedListPatient().forEach(p => console.log(p));
+        };
+
+        const callPatient = () => {
+            if(patientList.length === 0){
+                console.log("Patient line is empty.");
+                return;
             }
-            else{
-                console.log("Invalid option!");
-            }
-        }
+
+            sortedListPatient();
+            const nextPatient = patientList.shift();
+            console.log(`Call first patient of list: ${nextPatient.name}, password: ${nextPatient.password}`);
+            return nextPatient;
+        };
+
+
+
 
 
 
