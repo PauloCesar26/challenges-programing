@@ -129,85 +129,129 @@
         // _______________________________________________________________________________
 
 
-        const patientList = [
-            {
-                name: "Paulo",
-                age: 18,
-                password: 1
-            },
-            {
-                name: "Cesar",
-                age: 55,
-                password: 2
-            },
-            {
-                name: "Katia",
-                age: 55,
-                password: 3
-            },
-            {
-                name: "Elisa",
-                age: 16,
-                password: 4
-            },
-            {
-                name: "Milena",
-                age: 27,
-                password: 5
-            },
-            {
-                name: "Gloria",
-                age: 80,
-                password: 6
-            },
-            {
-                name: "Maria",
-                age: 81,
-                password: 7
-            },
-        ];
+        // const patientList = [
+        //     {
+        //         name: "Paulo",
+        //         age: 18,
+        //         password: 1
+        //     },
+        //     {
+        //         name: "Cesar",
+        //         age: 55,
+        //         password: 2
+        //     },
+        //     {
+        //         name: "Katia",
+        //         age: 55,
+        //         password: 3
+        //     },
+        //     {
+        //         name: "Elisa",
+        //         age: 16,
+        //         password: 4
+        //     },
+        //     {
+        //         name: "Milena",
+        //         age: 27,
+        //         password: 5
+        //     },
+        //     {
+        //         name: "Gloria",
+        //         age: 80,
+        //         password: 6
+        //     },
+        //     {
+        //         name: "Maria",
+        //         age: 81,
+        //         password: 7
+        //     },
+        // ];
         
-        const sortedListPatient = () => {
-            const sortListPatient = patientList.sort((a, b) => {
-                const patientA = a.age >= 60 ? 0 : 1;
-                const patientB = b.age >= 60 ? 0 : 1;
+        // const sortedListPatient = () => {
+        //     const sortListPatient = patientList.sort((a, b) => {
+        //         const patientA = a.age >= 60 ? 0 : 1;
+        //         const patientB = b.age >= 60 ? 0 : 1;
                 
-                if(patientA !== patientB) return patientA - patientB;
-                return a.password - b.password;
-            });
+        //         if(patientA !== patientB) return patientA - patientB;
+        //         return a.password - b.password;
+        //     });
 
-            return sortListPatient;
-        };
+        //     return sortListPatient;
+        // };
         
-        const addPatientList = (name, age, password) => {
-            const newPatient = {
+        // const addPatientList = (name, age, password) => {
+        //     const newPatient = {
+        //         name: name,
+        //         age: age,
+        //         password: password
+        //     }
+
+        //     patientList.push(newPatient);
+        //     sortedListPatient();
+
+        //     console.log(`Patient add with success: ${name}`);
+        // };
+
+        // const displayListPatient = () => {
+        //     sortedListPatient().forEach(p => console.log(p));
+        // };
+
+        // const callPatient = () => {
+        //     if(patientList.length === 0){
+        //         console.log("Patient line is empty.");
+        //         return;
+        //     }
+
+        //     sortedListPatient();
+        //     const nextPatient = patientList.shift();
+        //     console.log(`Call first patient of list: ${nextPatient.name}, password: ${nextPatient.password}`);
+        //     return nextPatient;
+        // };
+
+
+        // _______________________________________________________________________________
+
+
+        const listProducts = [
+            {
+                id: 1,
+                name: "Shirt",
+                quantify: 50,
+                price: 40
+            },
+            {
+                id: 2,
+                name: "Pants",
+                quantify: 50,
+                price: 50
+            },
+            {
+                id: 3,
+                name: "Coat",
+                quantify: 50,
+                price: 70
+            }
+        ];
+
+        const someID = listProducts.map(({id}) => id);
+        console.log(someID);
+        const lastId = someID.at(-1);
+        console.log(lastId);
+
+        const addNewProductsList = (name, quantify, price) => {
+            const newProduct = {
+                id: lastId + 1,
                 name: name,
-                age: age,
-                password: password
-            }
+                quantify: quantify,
+                price: price
+            };
 
-            patientList.push(newPatient);
-            sortedListPatient();
+            listProducts.push(newProduct);
 
-            console.log(`Patient add with success: ${name}`);
+            console.log(newProduct);
         };
 
-        const displayListPatient = () => {
-            sortedListPatient().forEach(p => console.log(p));
-        };
-
-        const callPatient = () => {
-            if(patientList.length === 0){
-                console.log("Patient line is empty.");
-                return;
-            }
-
-            sortedListPatient();
-            const nextPatient = patientList.shift();
-            console.log(`Call first patient of list: ${nextPatient.name}, password: ${nextPatient.password}`);
-            return nextPatient;
-        };
-
+        addNewProductsList("Cap", 30, 55);
 
 
 
