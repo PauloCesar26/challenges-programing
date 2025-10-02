@@ -234,7 +234,7 @@
 
         //     console.log(`Transactions valid: ${values.positive}`);
         //     console.log(`Total balance: ${someTransactionsPositive}`);
-        //     console.log(`Quantify of transactions positive: ${countValuesPostive}`);
+        //     console.log(`quantity of transactions positive: ${countValuesPostive}`);
         // };
 
         // const listTransactionBank = [150.00, -25.50, 400.00, 10.00, -50.00, 200.00, -1000.00];
@@ -245,46 +245,141 @@
         // _______________________________________________________________________________
 
 
-        const listProducts = [
+        const initialStock = [
             {
                 id: 1,
                 name: "Shirt",
-                quantify: 50,
+                quantity: 50,
                 price: 40
             },
             {
                 id: 2,
                 name: "Pants",
-                quantify: 50,
+                quantity: 50,
                 price: 50
             },
             {
                 id: 3,
                 name: "Coat",
-                quantify: 50,
+                quantity: 50,
                 price: 70
             }
         ];
+        const orderHistory = [];
 
-        const someID = listProducts.map(({id}) => id);
-        console.log(someID);
-        const lastId = someID.at(-1);
-        console.log(lastId);
+        const addNewProductsList = (
+            name, 
+            quantity, 
+            price
+        ) => {
+            const someID = initialStock.map(({id}) => id);
+            console.log(someID);
+            const lastId = someID.at(-1);
+            console.log(lastId);
 
-        const addNewProductsList = (name, quantify, price) => {
             const newProduct = {
                 id: lastId + 1,
                 name: name,
-                quantify: quantify,
+                quantity: quantity,
                 price: price
             };
 
-            listProducts.push(newProduct);
+            initialStock.push(newProduct);
 
             console.log(newProduct);
+            console.log("--------------------------------");
         };
 
-        addNewProductsList("Cap", 30, 55);
+        function queryProductStock(initialStock){
+            console.log("--Inictial Stock--")
+            for(const p of initialStock){
+                console.log(p);
+            }
+            console.log("--------------------------");
+        }
+
+        const makeOrder = ({
+            id = null, 
+            name = null, 
+            desiredQuantity = 1
+        }) => {
+            let findProduct = null;
+
+            if(id || name){
+                if(id){
+                    findProduct = initialStock.find((p) => p.id === id);
+                }
+                if(name){
+                    findProduct = initialStock.find((p) => p.name === name);
+                }
+
+                if(findProduct !== undefined){
+                    const { quantity } = findProduct;
+
+                    if(quantity >= desiredQuantity){
+                        console.log("Product in the stock.");
+                
+                        findProduct.quantity -= desiredQuantity;
+                        const totalValueOrder = desiredQuantity * findProduct.price;
+
+                        console.log(`--Information of order-- \nName product: ${findProduct.name} \nQuantity: ${desiredQuantity} \nTotal pagament: ${totalValueOrder}`);
+
+                        const orderDone = {
+                            name: findProduct.name,
+                            quantity: desiredQuantity,
+                            price: totalValueOrder
+                        };
+
+                        orderHistory.push(orderDone);
+                        newStock(findProduct);
+                    }
+                    else{
+                        console.log("Insufficient quantity.");
+                    }
+                }
+            }
+            else{
+                console.log("Order null.");
+            }
+
+            if(findProduct === undefined){
+                console.log("Product not found.")
+                return;
+            }
+        };
+
+        const newStock = (updateProduct) => {
+            const updateProductStock = updateProduct;
+
+            const updateStock = initialStock.map((p) => {
+                if(p.id === updateProduct.id || p.name === updateProduct.name){
+                    return updateProductStock;
+                }
+
+                return p;
+            });
+
+            console.log("--New stock--")
+            console.log(updateStock);
+            console.log("--------------------------");
+            calculateTotalStock(updateStock);
+        };
+
+        const calculateTotalStock = (stock) => {
+            let sumTotal = 0;
+
+            stock.forEach(p => {
+                const calculate = p.quantity * p.price;
+
+                console.log(`Calculate of product: ${p.name} \nTotal: ${calculate}`);
+                sumTotal += calculate;
+            });
+
+            console.log(`Sum total of stock: ${sumTotal}`);
+        };
+
+        queryProductStock(initialStock);
+        makeOrder({name: "Coat"});
 
 
 
