@@ -245,141 +245,169 @@
         // _______________________________________________________________________________
 
 
-        const initialStock = [
-            {
-                id: 1,
-                name: "Shirt",
-                quantity: 50,
-                price: 40
-            },
-            {
-                id: 2,
-                name: "Pants",
-                quantity: 50,
-                price: 50
-            },
-            {
-                id: 3,
-                name: "Coat",
-                quantity: 50,
-                price: 70
-            }
-        ];
-        const orderHistory = [];
+        // const initialStock = [
+        //     {
+        //         id: 1,
+        //         name: "Shirt",
+        //         quantity: 50,
+        //         price: 40
+        //     },
+        //     {
+        //         id: 2,
+        //         name: "Pants",
+        //         quantity: 50,
+        //         price: 50
+        //     },
+        //     {
+        //         id: 3,
+        //         name: "Coat",
+        //         quantity: 50,
+        //         price: 70
+        //     }
+        // ];
+        // const orderHistory = [];
 
-        const addNewProductsList = (
-            name, 
-            quantity, 
-            price
-        ) => {
-            const someID = initialStock.map(({id}) => id);
-            console.log(someID);
-            const lastId = someID.at(-1);
-            console.log(lastId);
+        // const addNewProductsList = (
+        //     name, 
+        //     quantity, 
+        //     price
+        // ) => {
+        //     const someID = initialStock.map(({id}) => id);
+        //     console.log(someID);
+        //     const lastId = someID.at(-1);
+        //     console.log(lastId);
 
-            const newProduct = {
-                id: lastId + 1,
-                name: name,
-                quantity: quantity,
-                price: price
-            };
+        //     const newProduct = {
+        //         id: lastId + 1,
+        //         name: name,
+        //         quantity: quantity,
+        //         price: price
+        //     };
 
-            initialStock.push(newProduct);
+        //     initialStock.push(newProduct);
 
-            console.log(newProduct);
-            console.log("--------------------------------");
-        };
+        //     console.log(newProduct);
+        //     console.log("--------------------------------");
+        // };
 
-        function queryProductStock(initialStock){
-            console.log("--Inictial Stock--")
-            for(const p of initialStock){
-                console.log(p);
-            }
-            console.log("--------------------------");
-        }
+        // function queryProductStock(initialStock){
+        //     console.log("--Inictial Stock--")
+        //     for(const p of initialStock){
+        //         console.log(p);
+        //     }
+        //     console.log("--------------------------");
+        // }
 
-        const makeOrder = ({
-            id = null, 
-            name = null, 
-            desiredQuantity = 1
-        }) => {
-            let findProduct = null;
+        // const makeOrder = ({
+        //     id = null, 
+        //     name = null, 
+        //     desiredQuantity = 1
+        // }) => {
+        //     let findProduct = null;
 
-            if(id || name){
-                if(id){
-                    findProduct = initialStock.find((p) => p.id === id);
-                }
-                if(name){
-                    findProduct = initialStock.find((p) => p.name === name);
-                }
+        //     if(id || name){
+        //         if(id){
+        //             findProduct = initialStock.find((p) => p.id === id);
+        //         }
+        //         if(name){
+        //             findProduct = initialStock.find((p) => p.name === name);
+        //         }
 
-                if(findProduct !== undefined){
-                    const { quantity } = findProduct;
+        //         if(findProduct !== undefined){
+        //             const { quantity } = findProduct;
 
-                    if(quantity >= desiredQuantity){
-                        console.log("Product in the stock.");
+        //             if(quantity >= desiredQuantity){
+        //                 console.log("Product in the stock.");
                 
-                        findProduct.quantity -= desiredQuantity;
-                        const totalValueOrder = desiredQuantity * findProduct.price;
+        //                 findProduct.quantity -= desiredQuantity;
+        //                 const totalValueOrder = desiredQuantity * findProduct.price;
 
-                        console.log(`--Information of order-- \nName product: ${findProduct.name} \nQuantity: ${desiredQuantity} \nTotal pagament: ${totalValueOrder}`);
+        //                 console.log(`--Information of order-- \nName product: ${findProduct.name} \nQuantity: ${desiredQuantity} \nTotal pagament: ${totalValueOrder}`);
 
-                        const orderDone = {
-                            name: findProduct.name,
-                            quantity: desiredQuantity,
-                            price: totalValueOrder
-                        };
+        //                 const orderDone = {
+        //                     name: findProduct.name,
+        //                     quantity: desiredQuantity,
+        //                     price: totalValueOrder
+        //                 };
 
-                        orderHistory.push(orderDone);
-                        newStock(findProduct);
-                    }
-                    else{
-                        console.log("Insufficient quantity.");
-                    }
+        //                 orderHistory.push(orderDone);
+        //                 newStock(findProduct);
+        //             }
+        //             else{
+        //                 console.log("Insufficient quantity.");
+        //             }
+        //         }
+        //     }
+        //     else{
+        //         console.log("Order null.");
+        //     }
+
+        //     if(findProduct === undefined){
+        //         console.log("Product not found.")
+        //         return;
+        //     }
+        // };
+
+        // const newStock = (updateProduct) => {
+        //     const updateProductStock = updateProduct;
+
+        //     const updateStock = initialStock.map((p) => {
+        //         if(p.id === updateProduct.id || p.name === updateProduct.name){
+        //             return updateProductStock;
+        //         }
+
+        //         return p;
+        //     });
+
+        //     console.log("--New stock--")
+        //     console.log(updateStock);
+        //     console.log("--------------------------");
+        //     calculateTotalStock(updateStock);
+        // };
+
+        // const calculateTotalStock = (stock) => {
+        //     let sumTotal = 0;
+
+        //     stock.forEach(p => {
+        //         const calculate = p.quantity * p.price;
+
+        //         console.log(`Calculate of product: ${p.name} \nTotal: ${calculate}`);
+        //         sumTotal += calculate;
+        //     });
+
+        //     console.log(`Sum total of stock: ${sumTotal}`);
+        // };
+
+        // queryProductStock(initialStock);
+        // makeOrder({name: "Coat"});
+
+
+        // _______________________________________________________________________________
+
+
+
+        const getString = (string) => {
+            const phrase = string.toLowerCase();
+
+            const getWords = phrase.match(/\b\w+\b/g);
+
+            const countQuantity = getWords.reduce((acc, w) => {
+                if(w.length > 2){
+                    acc[w] = (acc[w] || 0) + 1;
                 }
-            }
-            else{
-                console.log("Order null.");
-            }
 
-            if(findProduct === undefined){
-                console.log("Product not found.")
-                return;
+                return acc;
+            }, {});
+
+            const convertObjectForArray = Object.entries(countQuantity);
+            const countSorted = convertObjectForArray.sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+            for(const wordKey of countSorted){
+                console.log(wordKey);
             }
         };
 
-        const newStock = (updateProduct) => {
-            const updateProductStock = updateProduct;
-
-            const updateStock = initialStock.map((p) => {
-                if(p.id === updateProduct.id || p.name === updateProduct.name){
-                    return updateProductStock;
-                }
-
-                return p;
-            });
-
-            console.log("--New stock--")
-            console.log(updateStock);
-            console.log("--------------------------");
-            calculateTotalStock(updateStock);
-        };
-
-        const calculateTotalStock = (stock) => {
-            let sumTotal = 0;
-
-            stock.forEach(p => {
-                const calculate = p.quantity * p.price;
-
-                console.log(`Calculate of product: ${p.name} \nTotal: ${calculate}`);
-                sumTotal += calculate;
-            });
-
-            console.log(`Sum total of stock: ${sumTotal}`);
-        };
-
-        queryProductStock(initialStock);
-        makeOrder({name: "Coat"});
+        getString("O mercado de tecnologia de ponta é um mercado onde a inovação é a chave. Tecnologia e inovação andam juntas");
 
 
 
