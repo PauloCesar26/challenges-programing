@@ -385,32 +385,85 @@
         // _______________________________________________________________________________
 
 
+        // const getString = (string) => {
+        //     const phrase = string.toLowerCase();
 
-        const getString = (string) => {
-            const phrase = string.toLowerCase();
+        //     const getWords = phrase.match(/\b\w+\b/g);
 
-            const getWords = phrase.match(/\b\w+\b/g);
+        //     const countQuantity = getWords.reduce((acc, w) => {
+        //         if(w.length > 2){
+        //             acc[w] = (acc[w] || 0) + 1;
+        //         }
 
-            const countQuantity = getWords.reduce((acc, w) => {
+        //         return acc;
+        //     }, {});
+
+        //     const convertObjectForArray = Object.entries(countQuantity);
+        //     const countSorted = convertObjectForArray.sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+        //     for(const wordKey of countSorted){
+        //         console.log(wordKey);
+        //     }
+        // };
+
+        // getString("O mercado de tecnologia de ponta é um mercado onde a inovação é a chave. Tecnologia e inovação andam juntas");
+
+
+        // _______________________________________________________________________________
+
+        const removeAccents = str => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        const titles = [
+            "Previsão do Tempo: Chuva forte na capital.",
+            "Economia: Mercado financeiro reage mal ao IPCA.",
+            "Política: Debate na capital sobre novas leis.",
+            "Previsão do tempo: Frio recorde chega ao sul.",
+            "Economia: Novo índice de mercado sobe.",
+            "Esportes: Time do sul vence campeonato.",
+            "Política: Reunião sobre leis trabalhistas em Brasília."
+        ];
+
+        const countForTopic = {};
+
+        // const mainTitles = titles.map(t => t.split(":")[0].trim().toLowerCase()); 
+        // const formatedTiles = mainTitles.map(t => removeAccents(t));
+
+        for(const t of titles){
+            const [topic, description] = t.split(":");
+
+            const formatedTopic = topic.trim().toLocaleLowerCase();
+            const words = description.match(/\b\w+\b/g).map(w => removeAccents(w.toLowerCase()));
+
+            const wordCount = {};
+            for(const w of words){
                 if(w.length > 2){
-                    acc[w] = (acc[w] || 0) + 1;
+                    wordCount[w] = (wordCount[w] || 0) + 1;
                 }
-
-                return acc;
-            }, {});
-
-            const convertObjectForArray = Object.entries(countQuantity);
-            const countSorted = convertObjectForArray.sort((a, b) => b[1] - a[1]).slice(0, 3);
-
-            for(const wordKey of countSorted){
-                console.log(wordKey);
             }
-        };
 
-        getString("O mercado de tecnologia de ponta é um mercado onde a inovação é a chave. Tecnologia e inovação andam juntas");
+            countForTopic[topic] = wordCount;
+        }
+        
+        console.log(countForTopic);
+        //     const countSorted = convertObjectForArray.sort((a, b) => b[1] - a[1]).slice(0, 3);
+
+        
+
+        // [
+        //     previsao: {
+        //         word a: 1,
+        //         word b: 1,
+        //     }
+        //     economia: {
+        //         word a: 2
+        //     }
+        // ]
 
 
-
+        // const getTitles = (titles) => {
+        //     const mainTitles = titles.map(t => t.split(":")[0].trim().toLowerCase()); 
+        //     const formatedTiles = mainTitles.map(t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+        // }
 
 
     </script>
