@@ -420,53 +420,75 @@
         // _______________________________________________________________________________
 
 
-        const titles = [
-            "Previsão do Tempo: Chuva forte na capital.",
-            "Economia: Mercado financeiro reage mal ao IPCA.",
-            "Política: Debate na capital sobre novas leis."
-        ];
-        const topicCounts = {};
-        const contents = [];
+        // const titles = [
+        //     "Previsão do Tempo: Chuva forte na capital.",
+        //     "Economia: Mercado financeiro reage mal ao IPCA.",
+        //     "Política: Debate na capital sobre novas leis."
+        // ];
+        // const topicCounts = {};
+        // const contents = [];
 
-        for(const t of titles){
-            const [topic, description] = t.split(":");
-            const formattedTopic = topic.trim();
+        // for(const t of titles){
+        //     const [topic, description] = t.split(":");
+        //     const formattedTopic = topic.trim();
 
-            const formattedDescription = description
-                .replace(/[.,^!?;())]/g, "")
-                .replace(/\s{2,}/g, " ")
+        //     const formattedDescription = description
+        //         .replace(/[.,^!?;())]/g, "")
+        //         .replace(/\s{2,}/g, " ")
+        //         .trim()
+        //         .toLowerCase();
+
+        //     if(!topicCounts[formattedTopic]){
+        //         topicCounts[formattedTopic] = {};
+        //     }
+
+        //     const separateTopicDescription = {
+        //         topic: formattedTopic,
+        //         description: formattedDescription
+        //     };
+
+        //     contents.push(separateTopicDescription);
+
+        //     for(const w of formattedDescription.match(/\b\w+\b/g) || []){
+        //         if(w.length > 2){
+        //             topicCounts[formattedTopic][w] = (topicCounts[formattedTopic][w] || 0) + 1;
+        //         }
+        //     }
+        // }
+
+        // const finalResut = Object.entries(topicCounts).map(([topic, counts]) => {
+        //     const topicsWords = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 2);
+
+        //     return [topic, ...topicsWords];
+        // });
+
+        // console.log(contents);
+        // console.log("----------------------------");
+        // console.log(topicCounts);
+        // console.log(finalResut);
+        // console.log("----------------------------");
+
+
+        // _______________________________________________________________________________
+
+
+        const formattedInput = (inputUser) => {
+            const formattedInput = inputUser
+                .replace(/[-]/g, "")
+                .replace(/\s{1,}/g, "")
                 .trim()
-                .toLowerCase();
+                .toUpperCase();
 
-            if(!topicCounts[formattedTopic]){
-                topicCounts[formattedTopic] = {};
-            }
+            const newFormatInput = formattedInput.match(/.{3}/g).join("-");
 
-            const separateTopicDescription = {
-                topic: formattedTopic,
-                description: formattedDescription
-            };
+            console.log(newFormatInput);
+        };
 
-            contents.push(separateTopicDescription);
+        formattedInput("ABC-123xYz 456-DEF");
 
-            for(const w of formattedDescription.match(/\b\w+\b/g) || []){
-                if(w.length > 2){
-                    topicCounts[formattedTopic][w] = (topicCounts[formattedTopic][w] || 0) + 1;
-                }
-            }
-        }
 
-        const finalResut = Object.entries(topicCounts).map(([topic, counts]) => {
-            const topicsWords = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 2);
 
-            return [topic, ...topicsWords];
-        });
 
-        console.log(contents);
-        console.log("----------------------------");
-        console.log(topicCounts);
-        console.log(finalResut);
-        console.log("----------------------------");
 
 
 
