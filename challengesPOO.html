@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges POO</title>
+</head>
+<body>
+    <script>
+        class bankAccount{
+            constructor(titular){
+                this.titular = titular;
+                this.currentMoney = 0.00;
+            }
+
+            deposit(depositValue){
+                if(depositValue > 0){
+                    this.currentMoney += depositValue;
+                    return this.currentMoney;
+                }
+                else{
+                    return 0;
+                }
+            }
+
+            withdraw(withdrawValue){
+                if(withdrawValue > 0 && this.currentMoney > withdrawValue){
+                    this.currentMoney -= withdrawValue; 
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+
+            queryBankAccount(){
+                return `Titular: ${this.titular} \nCurrent value: ${this.currentMoney}`;
+            }
+        };
+
+        const myAccount = new bankAccount("Paulo");
+        console.log(myAccount.currentMoney);
+        console.log(myAccount.deposit(500));
+        console.log(myAccount.deposit(-100));
+        console.log(myAccount.withdraw(200));
+        console.log(myAccount.withdraw(400));
+        console.log(myAccount.queryBankAccount());
+
+    </script>
+</body>
+</html>
