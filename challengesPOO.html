@@ -38,6 +38,28 @@
             }
         };
 
+        class savingMoneyAccount extends bankAccount{
+            constructor(titular){
+                super(titular);
+                this.taxWithdraw = 5.00;
+            }
+
+            withdraw(withdrawValue){
+                const calculateWithdraw = withdrawValue + this.taxWithdraw;
+
+                if(this.currentMoney >= calculateWithdraw){
+                    this.currentMoney -= calculateWithdraw;
+                    console.log("Withdraw succes");
+                    return true;
+                }
+                else{
+                    console.log("Withdraw failed");
+                    return false;
+                }
+
+            }
+        };
+        
         const myAccount = new bankAccount("Paulo");
         console.log(myAccount.currentMoney);
         console.log(myAccount.deposit(500));
@@ -45,6 +67,15 @@
         console.log(myAccount.withdraw(200));
         console.log(myAccount.withdraw(400));
         console.log(myAccount.queryBankAccount());
+
+        console.log("----------------------------------------");
+
+        const myAccountSavingMoney = new savingMoneyAccount("Katia");
+        console.log(myAccountSavingMoney.deposit(100.00));
+        console.log(myAccountSavingMoney.withdraw(20.00));
+        console.log(myAccountSavingMoney.queryBankAccount());
+        console.log(myAccountSavingMoney.withdraw(30.00));
+        
 
     </script>
 </body>
