@@ -7,74 +7,112 @@
 </head>
 <body>
     <script>
-        class bankAccount{
-            constructor(titular){
-                this.titular = titular;
-                this.currentMoney = 0.00;
-            }
+        // class bankAccount{
+        //     constructor(titular){
+        //         this.titular = titular;
+        //         this.currentMoney = 0.00;
+        //     }
 
-            deposit(depositValue){
-                if(depositValue > 0){
-                    this.currentMoney += depositValue;
-                    return this.currentMoney;
-                }
-                else{
-                    return 0;
-                }
-            }
+        //     deposit(depositValue){
+        //         if(depositValue > 0){
+        //             this.currentMoney += depositValue;
+        //             return this.currentMoney;
+        //         }
+        //         else{
+        //             return 0;
+        //         }
+        //     }
 
-            withdraw(withdrawValue){
-                if(withdrawValue > 0 && this.currentMoney > withdrawValue){
-                    this.currentMoney -= withdrawValue; 
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
+        //     withdraw(withdrawValue){
+        //         if(withdrawValue > 0 && this.currentMoney > withdrawValue){
+        //             this.currentMoney -= withdrawValue; 
+        //             return true;
+        //         }
+        //         else{
+        //             return false;
+        //         }
+        //     }
 
-            queryBankAccount(){
-                return `Titular: ${this.titular} \nCurrent value: ${this.currentMoney}`;
-            }
-        };
+        //     queryBankAccount(){
+        //         return `Titular: ${this.titular} \nCurrent value: ${this.currentMoney}`;
+        //     }
+        // };
 
-        class savingMoneyAccount extends bankAccount{
-            constructor(titular){
-                super(titular);
-                this.taxWithdraw = 5.00;
-            }
+        // class savingMoneyAccount extends bankAccount{
+        //     constructor(titular){
+        //         super(titular);
+        //         this.taxWithdraw = 5.00;
+        //     }
 
-            withdraw(withdrawValue){
-                const calculateWithdraw = withdrawValue + this.taxWithdraw;
+        //     withdraw(withdrawValue){
+        //         const calculateWithdraw = withdrawValue + this.taxWithdraw;
 
-                if(this.currentMoney >= calculateWithdraw){
-                    this.currentMoney -= calculateWithdraw;
-                    console.log("Withdraw succes");
-                    return true;
-                }
-                else{
-                    console.log("Withdraw failed");
-                    return false;
-                }
+        //         if(this.currentMoney >= calculateWithdraw){
+        //             this.currentMoney -= calculateWithdraw;
+        //             console.log("Withdraw succes");
+        //             return true;
+        //         }
+        //         else{
+        //             console.log("Withdraw failed");
+        //             return false;
+        //         }
 
-            }
-        };
+        //     }
+        // };
         
-        const myAccount = new bankAccount("Paulo");
-        console.log(myAccount.currentMoney);
-        console.log(myAccount.deposit(500));
-        console.log(myAccount.deposit(-100));
-        console.log(myAccount.withdraw(200));
-        console.log(myAccount.withdraw(400));
-        console.log(myAccount.queryBankAccount());
+        // const myAccount = new bankAccount("Paulo");
+        // console.log(myAccount.currentMoney);
+        // console.log(myAccount.deposit(500));
+        // console.log(myAccount.deposit(-100));
+        // console.log(myAccount.withdraw(200));
+        // console.log(myAccount.withdraw(400));
+        // console.log(myAccount.queryBankAccount());
 
-        console.log("----------------------------------------");
+        // console.log("----------------------------------------");
 
-        const myAccountSavingMoney = new savingMoneyAccount("Katia");
-        console.log(myAccountSavingMoney.deposit(100.00));
-        console.log(myAccountSavingMoney.withdraw(20.00));
-        console.log(myAccountSavingMoney.queryBankAccount());
-        console.log(myAccountSavingMoney.withdraw(30.00));
+        // const myAccountSavingMoney = new savingMoneyAccount("Katia");
+        // console.log(myAccountSavingMoney.deposit(100.00));
+        // console.log(myAccountSavingMoney.withdraw(20.00));
+        // console.log(myAccountSavingMoney.queryBankAccount());
+        // console.log(myAccountSavingMoney.withdraw(30.00));
+
+
+        // _______________________________________________________________________________
+
+        
+        class address{
+            constructor(street, numberHouse, city){
+                this.street = street;
+                this.numberHouse = numberHouse;
+                this.city = city;
+            }
+
+            completeAddress(){
+                return `${this.street}, ${this.numberHouse}, ${this.city}`;
+            }
+        }
+
+        class employee{
+            constructor(name, positionCompany, employeeAddressInstance){
+                this.name = name;
+                this.positionCompany = positionCompany;
+                this.employeeAddress = employeeAddressInstance;
+            }
+
+            displayDetailsComplete(){
+                const fullAddress = this.employeeAddress.completeAddress();
+
+                return `${this.name}\n${this.positionCompany}\n${fullAddress}`;
+            }
+        };
+
+        const addressPaulo = new address("Rua y", "157", "São Paulo");        
+        const employeePaulo = new employee("Paulo C.", "Desenvolvedor", addressPaulo);
+        console.log(employeePaulo.displayDetailsComplete());
+        
+
+
+
         
 
     </script>
