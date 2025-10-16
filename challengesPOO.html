@@ -80,35 +80,70 @@
         // _______________________________________________________________________________
 
         
-        class address{
-            constructor(street, numberHouse, city){
-                this.street = street;
-                this.numberHouse = numberHouse;
-                this.city = city;
+        // class address{
+        //     constructor(street, numberHouse, city){
+        //         this.street = street;
+        //         this.numberHouse = numberHouse;
+        //         this.city = city;
+        //     }
+
+        //     completeAddress(){
+        //         return `${this.street}, ${this.numberHouse}, ${this.city}`;
+        //     }
+        // }
+
+        // class employee{
+        //     constructor(name, positionCompany, employeeAddressInstance){
+        //         this.name = name;
+        //         this.positionCompany = positionCompany;
+        //         this.employeeAddress = employeeAddressInstance;
+        //     }
+
+        //     displayDetailsComplete(){
+        //         const fullAddress = this.employeeAddress.completeAddress();
+
+        //         return `${this.name}\n${this.positionCompany}\n${fullAddress}`;
+        //     }
+        // };
+
+        // const addressPaulo = new address("Rua y", "157", "São Paulo");        
+        // const employeePaulo = new employee("Paulo C.", "Desenvolvedor", addressPaulo);
+        // console.log(employeePaulo.displayDetailsComplete());
+
+
+        // _______________________________________________________________________________
+
+
+        class circulo{
+            constructor(raio){
+                this.raio = raio;
             }
 
-            completeAddress(){
-                return `${this.street}, ${this.numberHouse}, ${this.city}`;
+            calculateArea(){
+                const pi = 3.14;
+                return pi * this.raio ** 2; 
             }
         }
 
-        class employee{
-            constructor(name, positionCompany, employeeAddressInstance){
-                this.name = name;
-                this.positionCompany = positionCompany;
-                this.employeeAddress = employeeAddressInstance;
+        class retangulo{
+            constructor(width, height){
+                this.width = width;
+                this.height = height;
             }
 
-            displayDetailsComplete(){
-                const fullAddress = this.employeeAddress.completeAddress();
-
-                return `${this.name}\n${this.positionCompany}\n${fullAddress}`;
+            calculateArea(){
+                return this.width * this.height;
             }
-        };
+        }
 
-        const addressPaulo = new address("Rua y", "157", "São Paulo");        
-        const employeePaulo = new employee("Paulo C.", "Desenvolvedor", addressPaulo);
-        console.log(employeePaulo.displayDetailsComplete());
+        const circle = new circulo(5);
+        const rectangle = new retangulo(4, 10);
+
+        const list = [circle, rectangle];
+        for(const item of list){
+            console.log(item.calculateArea());
+        }
+
         
 
 
