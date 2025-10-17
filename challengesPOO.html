@@ -114,37 +114,99 @@
         // _______________________________________________________________________________
 
 
-        class circulo{
-            constructor(raio){
-                this.raio = raio;
-            }
+        // class circulo{
+        //     constructor(raio){
+        //         this.raio = raio;
+        //     }
 
-            calculateArea(){
-                const pi = 3.14;
-                return pi * this.raio ** 2; 
-            }
-        }
+        //     calculateArea(){
+        //         const pi = 3.14;
+        //         return pi * this.raio ** 2; 
+        //     }
+        // }
 
-        class retangulo{
-            constructor(width, height){
-                this.width = width;
-                this.height = height;
-            }
+        // class retangulo{
+        //     constructor(width, height){
+        //         this.width = width;
+        //         this.height = height;
+        //     }
 
-            calculateArea(){
-                return this.width * this.height;
-            }
-        }
+        //     calculateArea(){
+        //         return this.width * this.height;
+        //     }
+        // }
 
-        const circle = new circulo(5);
-        const rectangle = new retangulo(4, 10);
+        // const circle = new circulo(5);
+        // const rectangle = new retangulo(4, 10);
 
-        const list = [circle, rectangle];
-        for(const item of list){
-            console.log(item.calculateArea());
-        }
+        // const list = [circle, rectangle];
+        // for(const item of list){
+        //     console.log(item.calculateArea());
+        // }
 
         
+        // _______________________________________________________________________________
+
+
+        class vehicle{
+            constructor(mark, model, consumingByKm){
+                this.mark = mark;
+                this.model = model;
+                this.consumingByKm = consumingByKm;
+            }
+
+            getInfo(){
+                return `Mark: ${this.mark} \nModel: ${this.model}`;
+            }
+
+            calculateExpenseTravel(distanceByKm, priceFuel){
+                const expense = (distanceByKm / this.consumingByKm) * priceFuel;
+
+                return expense;
+            }
+        }
+
+        class car extends vehicle{
+            constructor(mark, model, consumingByKm){
+                super(mark, model, consumingByKm);
+                this.taxToll = 20.00;
+            }
+
+            calculateExpenseTravel(distanceByKm, priceFuel){
+                const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
+                const totalExpense = fuelExpense + this.taxToll;
+
+                return totalExpense;
+            }
+        }
+
+        class truck extends vehicle{
+            constructor(mark, model, consumingByKm, axes){
+                super(mark, model, consumingByKm);
+                this.axes = axes;
+                this.taxByAxe = 5.00;
+            }
+
+            calculateExpenseTravel(distanceByKm, priceFuel){
+                const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
+                const variableTax = this.axes * this.taxByAxe;
+                const totalExpense = fuelExpense + variableTax;
+                
+                return totalExpense;
+            }
+        }
+
+        const carA = new car("Fiat", "Pulser", 10.0);
+        const truckB = new truck("Volvo", "FH", 3.0, 4);
+        const distance = 300;
+        const price = 6.0;
+
+        const expenseCar = carA.calculateExpenseTravel(distance, price);
+        const expenseTruck = truckB.calculateExpenseTravel(distance, price);
+
+        console.log(expenseCar);
+        console.log(expenseTruck);
+
 
 
 
