@@ -148,64 +148,128 @@
         // _______________________________________________________________________________
 
 
-        class vehicle{
-            constructor(mark, model, consumingByKm){
-                this.mark = mark;
-                this.model = model;
-                this.consumingByKm = consumingByKm;
-            }
+        // class vehicle{
+        //     constructor(mark, model, consumingByKm){
+        //         this.mark = mark;
+        //         this.model = model;
+        //         this.consumingByKm = consumingByKm;
+        //     }
 
-            getInfo(){
-                return `Mark: ${this.mark} \nModel: ${this.model}`;
-            }
+        //     getInfo(){
+        //         return `Mark: ${this.mark} \nModel: ${this.model}`;
+        //     }
 
-            calculateExpenseTravel(distanceByKm, priceFuel){
-                const expense = (distanceByKm / this.consumingByKm) * priceFuel;
+        //     calculateExpenseTravel(distanceByKm, priceFuel){
+        //         const expense = (distanceByKm / this.consumingByKm) * priceFuel;
 
-                return expense;
-            }
-        }
+        //         return expense;
+        //     }
+        // }
 
-        class car extends vehicle{
-            constructor(mark, model, consumingByKm){
-                super(mark, model, consumingByKm);
-                this.taxToll = 20.00;
-            }
+        // class car extends vehicle{
+        //     constructor(mark, model, consumingByKm){
+        //         super(mark, model, consumingByKm);
+        //         this.taxToll = 20.00;
+        //     }
 
-            calculateExpenseTravel(distanceByKm, priceFuel){
-                const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
-                const totalExpense = fuelExpense + this.taxToll;
+        //     calculateExpenseTravel(distanceByKm, priceFuel){
+        //         const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
+        //         const totalExpense = fuelExpense + this.taxToll;
 
-                return totalExpense;
-            }
-        }
+        //         return totalExpense;
+        //     }
+        // }
 
-        class truck extends vehicle{
-            constructor(mark, model, consumingByKm, axes){
-                super(mark, model, consumingByKm);
-                this.axes = axes;
-                this.taxByAxe = 5.00;
-            }
+        // class truck extends vehicle{
+        //     constructor(mark, model, consumingByKm, axes){
+        //         super(mark, model, consumingByKm);
+        //         this.axes = axes;
+        //         this.taxByAxe = 5.00;
+        //     }
 
-            calculateExpenseTravel(distanceByKm, priceFuel){
-                const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
-                const variableTax = this.axes * this.taxByAxe;
-                const totalExpense = fuelExpense + variableTax;
+        //     calculateExpenseTravel(distanceByKm, priceFuel){
+        //         const fuelExpense = super.calculateExpenseTravel(distanceByKm, priceFuel);
+        //         const variableTax = this.axes * this.taxByAxe;
+        //         const totalExpense = fuelExpense + variableTax;
                 
-                return totalExpense;
+        //         return totalExpense;
+        //     }
+        // }
+
+        // const carA = new car("Fiat", "Pulser", 10.0);
+        // const truckB = new truck("Volvo", "FH", 3.0, 4);
+        // const distance = 300;
+        // const price = 6.0;
+
+        // const expenseCar = carA.calculateExpenseTravel(distance, price);
+        // const expenseTruck = truckB.calculateExpenseTravel(distance, price);
+
+        // console.log(expenseCar);
+        // console.log(expenseTruck);
+
+
+        // _______________________________________________________________________________
+
+        
+        // function filterProducts(list){
+        //     const instanceClassProduct = list.filter(el => el instanceof product);
+        //     return instanceClassProduct;
+        // }
+
+        // class product{
+        //     constructor(name){
+        //         this.name = name;
+        //     }
+        // }
+
+        // class service{
+        //     constructor(description){
+        //         this.description = description;
+        //     }
+        // }
+
+        // const p1 = new product("Phone");
+        // const s1 = new service("TI");
+        // const p2 = new product("Notebook");
+        // const s2 = new service("Consultoria");
+
+        // const listItems = [p1, s1, p2, s2];
+
+        // console.log(filterProducts(listItems));
+
+
+        // _______________________________________________________________________________
+
+
+        function getNameClasse(obj){
+            console.log(obj.constructor.name);
+        }
+
+        class user{
+            constructor(id){
+                this.id = id;
             }
         }
 
-        const carA = new car("Fiat", "Pulser", 10.0);
-        const truckB = new truck("Volvo", "FH", 3.0, 4);
-        const distance = 300;
-        const price = 6.0;
+        class order{
+            constructor(total){
+                this.total = total;
+            }
+        }
 
-        const expenseCar = carA.calculateExpenseTravel(distance, price);
-        const expenseTruck = truckB.calculateExpenseTravel(distance, price);
+        const user1 = new user(47);
+        const order1 = new order(150.00);
 
-        console.log(expenseCar);
-        console.log(expenseTruck);
+        const nameClassUser = getNameClasse(user1);
+        const nameClassOrder = getNameClasse(order1); 
+
+
+
+
+
+
+
+
 
 
 
