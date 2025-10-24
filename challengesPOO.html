@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+        // Encapsulamento and Herança
         // class bankAccount{
         //     constructor(titular){
         //         this.titular = titular;
@@ -79,7 +80,8 @@
 
         // _______________________________________________________________________________
 
-        
+
+        // Associação
         // class address{
         //     constructor(street, numberHouse, city){
         //         this.street = street;
@@ -114,6 +116,7 @@
         // _______________________________________________________________________________
 
 
+        // Polimorfismo
         // class circulo{
         //     constructor(raio){
         //         this.raio = raio;
@@ -148,6 +151,7 @@
         // _______________________________________________________________________________
 
 
+        // Encapsulamento, Herança and Polimorfismo
         // class vehicle{
         //     constructor(mark, model, consumingByKm){
         //         this.mark = mark;
@@ -211,6 +215,7 @@
         // _______________________________________________________________________________
 
         
+        // Check instance of object (instance of)
         // function filterProducts(list){
         //     const instanceClassProduct = list.filter(el => el instanceof product);
         //     return instanceClassProduct;
@@ -241,27 +246,32 @@
         // _______________________________________________________________________________
 
 
-        function getNameClasse(obj){
-            console.log(obj.constructor.name);
-        }
+        // Identifier name of class (constructor.name)
+        // function getNameClasse(obj){
+        //     console.log(obj.constructor.name);
+        // }
 
-        class user{
-            constructor(id){
-                this.id = id;
-            }
-        }
+        // class user{
+        //     constructor(id){
+        //         this.id = id;
+        //     }
+        // }
 
-        class order{
-            constructor(total){
-                this.total = total;
-            }
-        }
+        // class order{
+        //     constructor(total){
+        //         this.total = total;
+        //     }
+        // }
 
-        const user1 = new user(47);
-        const order1 = new order(150.00);
+        // const user1 = new user(47);
+        // const order1 = new order(150.00);
 
-        const nameClassUser = getNameClasse(user1);
-        const nameClassOrder = getNameClasse(order1); 
+        // const nameClassUser = getNameClasse(user1);
+        // const nameClassOrder = getNameClasse(order1); 
+
+
+        // _______________________________________________________________________________
+
 
 
 
