@@ -266,11 +266,69 @@
         // const user1 = new user(47);
         // const order1 = new order(150.00);
 
-        // const nameClassUser = getNameClasse(user1);
-        // const nameClassOrder = getNameClasse(order1); 
+        // getNameClasse(user1);
+        // getNameClasse(order1);
+       
 
 
         // _______________________________________________________________________________
+
+
+        //Polimorfismo: FontWeb e FontEmail implementam o mesmo method "getMessage"
+        //Associação: class CollectinManagerFont associa as instancia de classes 
+            //atraves do array "this.listInstances" e do method addFont
+        class FontWeb{
+            constructor(url){
+                this.url = url;
+            }
+
+            getMessage(){
+                return `Message of web: ${this.url}`;
+            }
+        }
+
+        class FontEmail{
+            constructor(email){
+                this.email = email;
+            }
+
+            getMessage(){
+                return `Message of email: ${this.email}`;
+            }
+        }
+
+        class CollectionManagerFont{
+            constructor(){
+                this.listInstances = [];
+            } 
+
+            addFont(font){
+                this.listInstances.push(font);
+            }
+
+            processMessages(){
+                const newListWithGetMessages = this.listInstances.map(item => {
+                    return item.getMessage();
+                });   
+                
+                return newListWithGetMessages;
+            }
+        }
+
+        const fontWeb = new FontWeb("blog.com");
+        const fontEmail = new FontEmail("paulo@email.com");
+
+        const getFonts = new CollectionManagerFont();
+
+        getFonts.addFont(fontWeb);
+        getFonts.addFont(fontEmail);
+
+        const messages = getFonts.processMessages();
+
+        console.log(messages);
+
+
+
 
 
 
