@@ -277,55 +277,94 @@
         //Polimorfismo: FontWeb e FontEmail implementam o mesmo method "getMessage"
         //Associação: class CollectinManagerFont associa as instancia de classes 
             //atraves do array "this.listInstances" e do method addFont
-        class FontWeb{
-            constructor(url){
-                this.url = url;
-            }
+        // class FontWeb{
+        //     constructor(url){
+        //         this.url = url;
+        //     }
 
-            getMessage(){
-                return `Message of web: ${this.url}`;
-            }
-        }
+        //     getMessage(){
+        //         return `Message of web: ${this.url}`;
+        //     }
+        // }
 
-        class FontEmail{
-            constructor(email){
-                this.email = email;
-            }
+        // class FontEmail{
+        //     constructor(email){
+        //         this.email = email;
+        //     }
 
-            getMessage(){
-                return `Message of email: ${this.email}`;
-            }
-        }
+        //     getMessage(){
+        //         return `Message of email: ${this.email}`;
+        //     }
+        // }
 
-        class CollectionManagerFont{
-            constructor(){
-                this.listInstances = [];
-            } 
+        // class CollectionManagerFont{
+        //     constructor(){
+        //         this.listInstances = [];
+        //     } 
 
-            addFont(font){
-                this.listInstances.push(font);
-            }
+        //     addFont(font){
+        //         this.listInstances.push(font);
+        //     }
 
-            processMessages(){
-                const newListWithGetMessages = this.listInstances.map(item => {
-                    return item.getMessage();
-                });   
+        //     processMessages(){
+        //         const newListWithGetMessages = this.listInstances.map(item => {
+        //             return item.getMessage();
+        //         });   
                 
-                return newListWithGetMessages;
+        //         return newListWithGetMessages;
+        //     }
+        // }
+
+        // const fontWeb = new FontWeb("blog.com");
+        // const fontEmail = new FontEmail("paulo@email.com");
+
+        // const getFonts = new CollectionManagerFont();
+
+        // getFonts.addFont(fontWeb);
+        // getFonts.addFont(fontEmail);
+
+        // const messages = getFonts.processMessages();
+
+        // console.log(messages);
+
+
+        // _______________________________________________________________________________
+
+
+
+        class FormatText{
+            formatData(data){
+                const newData = data.join("\n");
+                console.log(newData);
             }
         }
 
-        const fontWeb = new FontWeb("blog.com");
-        const fontEmail = new FontEmail("paulo@email.com");
+        class FormatJson{
+            formatData(data){
+                const newData = JSON.stringify(data);
+                console.log(newData);
+            }
+        }
 
-        const getFonts = new CollectionManagerFont();
+        class ReportGenerator{
+            constructor(){
+                this.listFormats = [];
+            }
 
-        getFonts.addFont(fontWeb);
-        getFonts.addFont(fontEmail);
+            addFormat(format){
+                this.listFormats.push(format)
+            }
 
-        const messages = getFonts.processMessages();
+            reportGenerator(typeFormat, datas){
+                const newListFormat = this.listFormats.map(format => {
+                    if(format.constructor.name )
 
-        console.log(messages);
+                })
+            }
+        }
+
+
+
 
 
 
