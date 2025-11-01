@@ -334,15 +334,18 @@
 
         class FormatText{
             formatData(data){
-                const newData = data.join("\n");
-                console.log(newData);
+                return data.join("\n");
             }
         }
 
         class FormatJson{
             formatData(data){
-                const newData = JSON.stringify(data);
-                console.log(newData);
+                const processedData = data.map(item => {
+                    const [key, value] = item.split(':');
+                    return { [key]: value };
+                });
+
+                return JSON.stringify(processedData, null, 2);
             }
         }
 
@@ -356,12 +359,30 @@
             }
 
             reportGenerator(typeFormat, datas){
-                const newListFormat = this.listFormats.map(format => {
-                    if(format.constructor.name )
+                for(const content of this.listFormats){
+                    if(content.constructor.name === typeFormat){
+                        return content.formatData(datas);
+                    }
+                }
 
-                })
+                return `Error: Format ${typeFormat} invalid.`;
             }
         }
+
+        const datasSell = ["Product A: 100", "Product B: 100", "Total: 200"];
+
+        const generator = new ReportGenerator();
+
+        generator.addFormat(new FormatText());
+        generator.addFormat(new FormatJson());
+
+        const reportText = generator.reportGenerator("FormatText", datasSell);
+        const reportJSON = generator.reportGenerator("FormatJson", datasSell);
+
+        console.log(reportText);
+        console.log(reportJSON);
+
+ 
 
 
 
