@@ -332,6 +332,10 @@
 
 
 
+        // Concepts OOP in the exercise
+        // Polimorfismo: FormatText and FormatJson, answer same formatData method with different logics
+        // Associação: ReportGenerator class gerencia the collection of objects formatadores (this.listFormats)
+        // Inspeção of objects: with content.constructor name === typeFormat para identificar the object correct
         class FormatText{
             formatData(data){
                 return data.join("\n");
