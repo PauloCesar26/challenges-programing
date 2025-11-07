@@ -472,19 +472,40 @@
         // _______________________________________________________________________________
 
 
-        const formattedInput = (inputUser) => {
-            const formattedInput = inputUser
-                .replace(/[-]/g, "")
-                .replace(/\s{1,}/g, "")
-                .trim()
-                .toUpperCase();
+        // const formattedInput = (inputUser) => {
+        //     const formattedInput = inputUser
+        //         .replace(/[-]/g, "")
+        //         .replace(/\s{1,}/g, "")
+        //         .trim()
+        //         .toUpperCase();
 
-            const newFormatInput = formattedInput.match(/.{3}/g).join("-");
+        //     const newFormatInput = formattedInput.match(/.{3}/g).join("-");
 
-            console.log(newFormatInput);
+        //     console.log(newFormatInput);
+        // };
+
+        // formattedInput("ABC-123xYz 456-DEF");
+
+
+        // _______________________________________________________________________________
+
+    
+        const methodsPayment = {
+            pix: () => {console.log("Pix")},
+            boleto: () => {console.log("Boleto")},
+            cartao: () => {console.log("Cartão")}
         };
 
-        formattedInput("ABC-123xYz 456-DEF");
+        const method = "pix";
+
+        if(methodsPayment[method]){
+            methodsPayment[method]();
+        }
+        else{
+            console.log("Invalid method!");
+        }
+
+        
 
 
 
