@@ -8,11 +8,13 @@
 <body>
     <script>
         // Encapsulamento and Herança
-        // Encapsulamento:é o principio de agrupar dados(atributos), metodos(funções) que operam sobre esses dados
-            // em uma unica classe principal e ao mesmo tempo restringe o acesso direto aos dados de fora(capsula protetora).
-            // Capsula (Agrupamento): classe banckAccount agrupa o que é a conta e o que ela faz, atributos e metodos 
-            // Restrição de acesso: o encapsulamento garante que os dados internos do objeto não possam ser alterados de forma incontrolavel
-        
+            // Encapsulamento:é o principio de agrupar dados(atributos), metodos(funções) que operam sobre esses dados
+                // em uma unica classe principal e ao mesmo tempo restringe o acesso direto aos dados de fora(capsula protetora).
+                // Capsula (Agrupamento): classe banckAccount agrupa o que é a conta e o que ela faz, atributos e metodos 
+                // Restrição de acesso: o encapsulamento garante que os dados internos do objeto não possam ser alterados de forma incontrolavel
+            
+            // Herança:usado para uma classe herdar todos os atributos e metodos de uma clase principal 
+            
         // class bankAccount{
         //     constructor(titular){
         //         this.titular = titular;
@@ -87,6 +89,11 @@
 
 
         // Associação
+            // Associação: é o relacionamento de um objeto de uma classe se conectando ou
+            // usando um objeto de outra classe para cumprir sua função. No desafio abaixo
+            // um employee possui um address, fazendo com que os objetos se relacionam e trabalham juntos e 
+            // separando responsabilidades
+
         // class address{
         //     constructor(street, numberHouse, city){
         //         this.street = street;
@@ -122,6 +129,14 @@
 
 
         // Polimorfismo
+            // é o uso de muitas formas "poli = muitas, morfismo = forma", ele é a capacidade 
+            // de um único comando ou método assumir muitas formas de execução
+
+            // polimorfismo no desafio ocorre na chamada do metodo "item.calculateArea()", 
+            // para fazer o calculo de qualquer forma vai ser sempre chamado o calculateArea()
+            // quando o codigo é executado, o runtime descobre o tipo real do objeto e executa 
+            // a versão correta do método
+
         // class circulo{
         //     constructor(raio){
         //         this.raio = raio;
@@ -280,8 +295,10 @@
 
 
         //Polimorfismo: FontWeb e FontEmail implementam o mesmo method "getMessage"
+
         //Associação: class CollectinManagerFont associa as instancia de classes 
             //atraves do array "this.listInstances" e do method addFont
+
         // class FontWeb{
         //     constructor(url){
         //         this.url = url;
@@ -338,9 +355,10 @@
 
 
         // Concepts OOP in the exercise
-        // Polimorfismo: FormatText and FormatJson, answer same formatData method with different logics
-        // Associação: ReportGenerator class gerencia the collection of objects formatadores (this.listFormats)
-        // Inspeção of objects: with content.constructor name === typeFormat para identificar the object correct
+            // Polimorfismo: FormatText and FormatJson, answer same formatData method with different logics
+            // Associação: ReportGenerator class gerencia the collection of objects formatadores (this.listFormats)
+            // Inspeção of objects: with content.constructor name === typeFormat para identificar the object correct
+            
         class FormatText{
             formatData(data){
                 return data.join("\n");
