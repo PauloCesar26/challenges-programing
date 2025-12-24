@@ -413,57 +413,137 @@
         // _______________________________________________________________________________
 
 
-        class TaskTracker{
-            constructor(){
-                this.tasks = [];
-                this.nextId = 1;
+        // class TaskTracker{
+        //     constructor(){
+        //         this.tasks = [];
+        //         this.nextId = 1;
+        //     }
+
+        //     addTask(descriptionText){
+        //         const task = {
+        //             id: this.nextId,
+        //             description: descriptionText,
+        //             completed: false
+        //         };
+
+        //         this.tasks.push(task);
+        //         this.nextId += 1;
+        //     };
+
+        //     completeTask(idTask){
+        //         const findTask = this.tasks.find((t) => t.id === idTask);
+
+        //         if(findTask){
+        //             findTask.completed = true; 
+        //         }
+        //         else{
+        //             console.log("Error")
+        //         }
+        //     }
+
+        //     getPendingTasks(){
+        //         const tasksNotComplete = this.tasks.filter(task => task.completed === false);
+        //         return tasksNotComplete;
+        //     }
+
+        //     getTotalTasks(){
+        //         return this.tasks.length;
+        //     }
+        // }
+
+
+        // const tasks = new TaskTracker();
+
+        // tasks.addTask("Estudar");
+        // tasks.addTask("Treinar");
+        // tasks.addTask("Ligação com Caique");
+
+        // tasks.completeTask(1);
+
+        // const pendente = tasks.getPendingTasks();
+        
+        // console.log(pendente);
+        // console.log(`Total: ${tasks.getTotalTasks()}`);
+
+
+        // _______________________________________________________________________________
+
+
+        const fleet = [
+            { 
+                id: 1, 
+                model: "Fusca", 
+                dailyRate: 50, 
+                category: "Economy" 
+            },
+            { 
+                id: 2, 
+                model: "Civic", 
+                dailyRate: 150, 
+                category: "Sedan" 
+            },
+            { 
+                id: 3, 
+                model: "Hilux", 
+                dailyRate: 300, 
+                category: "SUV" 
+            }
+        ];
+
+        class RentalSystem{
+            constructor(fleet){
+                this.activeRentals = [];
+                this.availableCars = [...fleet];
+                this.fleetReference = fleet;
             }
 
-            addTask(descriptionText){
-                const task = {
-                    id: this.nextId,
-                    description: descriptionText,
-                    completed: false
-                };
+            rentCar(carId, customerName, days){
+                const findCar = this.availableCars.find(car => car.id === carId);
 
-                this.tasks.push(task);
-                this.nextId += 1;
-            };
+                if(findCar){
+                    const totalCost = findCar.dailyRate * days;
 
-            completeTask(idTask){
-                const findTask = this.tasks.find((t) => t.id === idTask);
+                    this.availableCars = this.availableCars.filter(car => car.id !== carId);
+                    this.activeRentals.push({ carId, customerName, days, totalCost });
 
-                if(findTask){
-                    findTask.completed = true; 
+                    return `Sucesso ${findCar.model} alugado para ${customerName}`;
                 }
                 else{
-                    console.log("Error")
+                    return `Carro não disponivel`;
                 }
+            };
+
+            returnCar(carId){
+                const findRent = this.activeRentals.find(car => car.carId === carId);
+
+                if(findRent){
+                    this.activeRentals = this.activeRentals.filter(car => car.carId !== carId);
+    
+                    const carOriginal = this.fleetReference.find(car => car.carId === carId);
+                    this.availableCars.push(carOriginal);
+    
+                    return `Carro ${carId} devolvido com sucesso`;
+                }
+                
+                return `Este não consta como alugado`;
             }
 
-            getPendingTasks(){
-                const tasksNotComplete = this.tasks.filter(task => task.completed === false);
-                return tasksNotComplete;
+            calculateTotalRevenue(){
+                const totalRevenue = this.activeRentals.reduce((acc, rental) => {
+                    return acc + rental.totalCost;
+                }, 0);
+
+                return totalRevenue;
             }
 
-            getTotalTasks(){
-                return this.tasks.length;
-            }
+            applyDiscount(category, percentage){
+                this.availableCars.forEach(car => {
+                    if(car.category === category){
+                        car.dailyRate -= car.dailyRate * (percentage / 100);
+                    }
+                })
+            };
         }
-
-
-        const tasks = new TaskTracker();
-
-        tasks.addTask("Estudar");
-        tasks.addTask("Treinar");
-        tasks.addTask("Ligação com Caique");
-
-        tasks.completeTask(1);
-
-        const pendente = tasks.getPendingTasks();
-        
-        console.log(pendente);
-        console.log(`Total: ${tasks.getTotalTasks()}`);
 
 
 
