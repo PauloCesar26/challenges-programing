@@ -469,84 +469,166 @@
         // _______________________________________________________________________________
 
 
-        const fleet = [
-            { 
-                id: 1, 
-                model: "Fusca", 
-                dailyRate: 50, 
-                category: "Economy" 
-            },
-            { 
-                id: 2, 
-                model: "Civic", 
-                dailyRate: 150, 
-                category: "Sedan" 
-            },
-            { 
-                id: 3, 
-                model: "Hilux", 
-                dailyRate: 300, 
-                category: "SUV" 
-            }
-        ];
+        // const fleet = [
+        //     { 
+        //         id: 1, 
+        //         model: "Fusca", 
+        //         dailyRate: 50, 
+        //         category: "Economy" 
+        //     },
+        //     { 
+        //         id: 2, 
+        //         model: "Civic", 
+        //         dailyRate: 150, 
+        //         category: "Sedan" 
+        //     },
+        //     { 
+        //         id: 3, 
+        //         model: "Hilux", 
+        //         dailyRate: 300, 
+        //         category: "SUV" 
+        //     }
+        // ];
 
-        class RentalSystem{
-            constructor(fleet){
-                this.activeRentals = [];
-                this.availableCars = [...fleet];
-                this.fleetReference = fleet;
-            }
+        // class RentalSystem{
+        //     constructor(fleet){
+        //         this.activeRentals = [];
+        //         this.availableCars = [...fleet];
+        //         this.fleetReference = fleet;
+        //     }
 
-            rentCar(carId, customerName, days){
-                const findCar = this.availableCars.find(car => car.id === carId);
+        //     rentCar(carId, customerName, days){
+        //         const findCar = this.availableCars.find(car => car.id === carId);
 
-                if(findCar){
-                    const totalCost = findCar.dailyRate * days;
+        //         if(findCar){
+        //             const totalCost = findCar.dailyRate * days;
 
-                    this.availableCars = this.availableCars.filter(car => car.id !== carId);
-                    this.activeRentals.push({ carId, customerName, days, totalCost });
+        //             this.availableCars = this.availableCars.filter(car => car.id !== carId);
+        //             this.activeRentals.push({ carId, customerName, days, totalCost });
 
-                    return `Sucesso ${findCar.model} alugado para ${customerName}`;
-                }
-                else{
-                    return `Carro não disponivel`;
-                }
-            };
+        //             return `Sucesso ${findCar.model} alugado para ${customerName}`;
+        //         }
+        //         else{
+        //             return `Carro não disponivel`;
+        //         }
+        //     };
 
-            returnCar(carId){
-                const findRent = this.activeRentals.find(car => car.carId === carId);
+        //     returnCar(carId){
+        //         const findRent = this.activeRentals.find(car => car.carId === carId);
 
-                if(findRent){
-                    this.activeRentals = this.activeRentals.filter(car => car.carId !== carId);
+        //         if(findRent){
+        //             this.activeRentals = this.activeRentals.filter(car => car.carId !== carId);
     
-                    const carOriginal = this.fleetReference.find(car => car.carId === carId);
-                    this.availableCars.push(carOriginal);
+        //             const carOriginal = this.fleetReference.find(car => car.carId === carId);
+        //             this.availableCars.push(carOriginal);
     
-                    return `Carro ${carId} devolvido com sucesso`;
-                }
+        //             return `Carro ${carId} devolvido com sucesso`;
+        //         }
                 
-                return `Este não consta como alugado`;
+        //         return `Este não consta como alugado`;
+        //     }
+
+        //     calculateTotalRevenue(){
+        //         const totalRevenue = this.activeRentals.reduce((acc, rental) => {
+        //             return acc + rental.totalCost;
+        //         }, 0);
+
+        //         return totalRevenue;
+        //     }
+
+        //     applyDiscount(category, percentage){
+        //         this.availableCars.forEach(car => {
+        //             if(car.category === category){
+        //                 car.dailyRate -= car.dailyRate * (percentage / 100);
+        //             }
+        //         })
+        //     };
+        // }
+
+
+        // _______________________________________________________________________________
+
+
+        // Access modifiers in JS
+            // Public access
+                // in JavaScript the public access modifiers are set by default, if you define an attribute or method without any special symbol
+                // Example:
+                // class Carro {
+                //     modelo = "Fusca"; // Public by default
+
+                //     buzinar() {
+                //         console.log("Beep!");
+                //     }
+                // }
+
+            // Private access
+                // to define the private access modifiers use the symbol "#" before the name of the attribute or method
+                // Example:
+                // class ContaBancaria {
+                //     #saldo = 0; // Private attribute
+
+                //     depositar(valor) {
+                //         this.#saldo += valor;
+                //     }
+
+                //     verSaldo() {
+                //         return `Seu saldo é R$ ${this.#saldo}`;
+                //     }
+                // }
+
+                // const minhaConta = new ContaBancaria();
+                // console.log(minhaConta.#saldo); // ERRO! Cannot be accessed from outside
+
+            // Protected access
+                // There is no native modifier protected in JavaScript; the community has adopted a convention that is underscore(_) before the name.
+                // Example:
+                // class Pai {
+                //     _segredoDeFamilia = "Receita de bolo"; // Convention of the protected
+                // }
+
+                // class Filho extends Pai {
+                //     usarSegredo() {
+                //         console.log(this._segredoDeFamilia); // Funciona
+                //     }
+                // }
+
+        class Safe{
+            #password;
+
+            constructor(initialPassword){
+                this.#password = initialPassword;
             }
 
-            calculateTotalRevenue(){
-                const totalRevenue = this.activeRentals.reduce((acc, rental) => {
-                    return acc + rental.totalCost;
-                }, 0);
+            tryOpenSafe(password){
+                if(password === this.#password){
+                    return "Safe open";
+                }
 
-                return totalRevenue;
+                return "Wrong password";
             }
 
-            applyDiscount(category, percentage){
-                this.availableCars.forEach(car => {
-                    if(car.category === category){
-                        car.dailyRate -= car.dailyRate * (percentage / 100);
-                    }
-                })
-            };
+            changePassword(oldPassword, newPassword){
+                if(oldPassword !== this.#password){
+                    return "Error: Wrong old password";
+                }
+
+                if(oldPassword === newPassword){
+                    return "Error: New password cannot be the same as the old one";
+                }
+
+                this.#password = newPassword;
+                return "Password was changed";
+            }
         }
 
+        const mySafe = new Safe();
+        // console.log(mySafe.#password);
 
+        console.log(mySafe.tryOpenSafe(11111));
+        console.log(mySafe.tryOpenSafe(1234));
 
+        mySafe.changePassword(1234, 7777);
+        console.log(mySafe.tryOpenSafe(7777));
 
 
 
