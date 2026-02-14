@@ -592,43 +592,73 @@
                 //     }
                 // }
 
-        class Safe{
-            #password;
+        // class Safe{
+        //     #password;
 
-            constructor(initialPassword){
-                this.#password = initialPassword;
+        //     constructor(initialPassword){
+        //         this.#password = initialPassword;
+        //     }
+
+        //     tryOpenSafe(password){
+        //         if(password === this.#password){
+        //             return "Safe open";
+        //         }
+
+        //         return "Wrong password";
+        //     }
+
+        //     changePassword(oldPassword, newPassword){
+        //         if(oldPassword !== this.#password){
+        //             return "Error: Wrong old password";
+        //         }
+
+        //         if(oldPassword === newPassword){
+        //             return "Error: New password cannot be the same as the old one";
+        //         }
+
+        //         this.#password = newPassword;
+        //         return "Password was changed";
+        //     }
+        // }
+
+        // const mySafe = new Safe();
+        // // console.log(mySafe.#password);
+
+        // console.log(mySafe.tryOpenSafe(11111));
+        // console.log(mySafe.tryOpenSafe(1234));
+
+        // mySafe.changePassword(1234, 7777);
+        // console.log(mySafe.tryOpenSafe(7777));
+
+        // ______________________________________
+
+
+        class BankAccount{
+            #bankBalance;
+            #historico;
+
+            constructor(){
+                this.#bankBalance = 0;
+                this.#historico = [];
             }
 
-            tryOpenSafe(password){
-                if(password === this.#password){
-                    return "Safe open";
-                }
-
-                return "Wrong password";
+            isNumber(value){
+                return !isNaN(value);
             }
 
-            changePassword(oldPassword, newPassword){
-                if(oldPassword !== this.#password){
-                    return "Error: Wrong old password";
+            #valueValidation(value){
+                if(isNumber(value) && value > 0){
+                    return true;
                 }
-
-                if(oldPassword === newPassword){
-                    return "Error: New password cannot be the same as the old one";
+                else{
+                    return false;
                 }
+            }
 
-                this.#password = newPassword;
-                return "Password was changed";
+            #register(type, value){
+                this.#historico.push(`Type: R$${value}`);
             }
         }
-
-        const mySafe = new Safe();
-        // console.log(mySafe.#password);
-
-        console.log(mySafe.tryOpenSafe(11111));
-        console.log(mySafe.tryOpenSafe(1234));
-
-        mySafe.changePassword(1234, 7777);
-        console.log(mySafe.tryOpenSafe(7777));
 
 
 
