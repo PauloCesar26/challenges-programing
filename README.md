@@ -1,2 +1,2 @@
-# chalenges-programing
-### Challenges de JS para treinar conceitos importantes e para fixar na mente 
+# Practicing programming concepts
+### Daily practice applying programming concepts in Javascript 
