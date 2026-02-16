@@ -641,13 +641,9 @@
                 this.#bankBalance = 0;
                 this.#historico = [];
             }
-
-            isNumber(value){
-                return !isNaN(value);
-            }
-
+            
             #valueValidation(value){
-                if(isNumber(value) && value > 0){
+                if(typeof value === "number" && value > 0){
                     return true;
                 }
                 else{
@@ -656,11 +652,43 @@
             }
 
             #register(type, value){
-                this.#historico.push(`Type: R$${value}`);
+                this.#historico.push(`${type}: R$${value}`);
+            }
+
+            deposit(value){
+               if(!this.#valueValidation(value)) return "Invalid value";
+
+                this.#bankBalance += value;
+                this.#register("Deposit", value);
+                return `Success: R$ ${value} deposited.`;
+            }
+
+            withdraw(value){
+                if(!this.#valueValidation(value)) return "Invalid value";
+        
+                if(value > this.#bankBalance) return "Insufficient balance";
+
+                this.#bankBalance -= value;
+                this.#register("Withdraw", value);
+
+                return `Success: R$ ${value} withdrawn.`;
+            }
+
+            getStatement(){
+                return{
+                    transactions: [...this.#historico],
+                    finalBalance: `R$ ${this.#bankBalance.toFixed(2)}`
+                };
             }
         }
 
 
+        const myAccount = new BankAccount();
+
+        console.log(myAccount.deposit(100));
+        console.log(myAccount.withdraw(55));
+        console.log(myAccount.withdraw(-50));
+        console.log(myAccount.getStatement());
 
 
 
