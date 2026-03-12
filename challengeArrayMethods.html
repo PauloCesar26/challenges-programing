@@ -138,46 +138,80 @@
         
         // _______________________________________________________________________________
 
-        let contacts = [
-            {
-                name: "Paulo",
-                phone: "47"
-            },
-            { 
-                name: "Ana Clara", 
-                phone: "1111-1111" 
-            },
-            { 
-                name: "Carlos Silva", 
-                phone: "2222-2222" 
-            },
-            { 
-                name: "Mariana Costa", 
-                phone: "3333-3333" },
-            { 
-                name: "Pedro Santos", 
-                phone: "4444-4444" 
-            }
-        ];
-        const namesContacts = contacts.map(({name}) => name);
-        console.log(contacts);
-        console.log(namesContacts);
+        // let contacts = [
+        //     {
+        //         name: "Paulo",
+        //         phone: "47"
+        //     },
+        //     { 
+        //         name: "Ana Clara", 
+        //         phone: "1111-1111" 
+        //     },
+        //     { 
+        //         name: "Carlos Silva", 
+        //         phone: "2222-2222" 
+        //     },
+        //     { 
+        //         name: "Mariana Costa", 
+        //         phone: "3333-3333" },
+        //     { 
+        //         name: "Pedro Santos", 
+        //         phone: "4444-4444" 
+        //     }
+        // ];
+        // const namesContacts = contacts.map(({name}) => name);
+        // console.log(contacts);
+        // console.log(namesContacts);
         
-        const searchName = prompt("Typed a name to search").toLowerCase();
-        const nameFilterSearch = namesContacts.filter(name => name.toLowerCase() === searchName);
+        // const searchName = prompt("Typed a name to search").toLowerCase();
+        // const nameFilterSearch = namesContacts.filter(name => name.toLowerCase() === searchName);
 
-        if(nameFilterSearch.length > 0){
-            console.log("Name found");
+        // if(nameFilterSearch.length > 0){
+        //     console.log("Name found");
 
-            nameFilterSearch.forEach(name => console.log(`Name: ${name.toUpperCase()}`));
-            console.log(nameFilterSearch);
+        //     nameFilterSearch.forEach(name => console.log(`Name: ${name.toUpperCase()}`));
+        //     console.log(nameFilterSearch);
+        // }
+        // else{
+        //     console.log("Name not found");
+        // }
+        
+        
+        // _______________________________________________________________________________
+
+
+        // .split() --> usado apenas em strings, ele separa as informações e coloca 
+        // dentro de uma array, você escolhe onde que separar unsando um separador(espaço, virgula, traço...)
+
+        // .slice() --> usado em strings e arrays, ele retira uma "fatia" ou um pedaço sem alterar o original,
+        // você diz onde começa e onde termina
+
+        // function cleanInformation(info){
+        //     const parts = info.split(".");
+        //     const fullName = parts.slice(1, 3);
+        //     const year = info.slice(-4);
+
+        //     console.log(parts);
+        //     console.log(fullName);
+        //     console.log(year);
+        // }
+
+        // const input = "user.ilia.topuria.2024";
+        // cleanInformation(input);
+        // _______________________________________
+
+        function createCleanName(path){
+            const fileName = path.split("/").pop();
+
+            const indexLastPoint = fileName.lastIndexOf(".");
+            const name = fileName.slice(0, indexLastPoint);
+            const extension = fileName.slice(indexLastPoint);
+
+            return `File: ${name} | Extension: ${extension}`;
         }
-        else{
-            console.log("Name not found");
-        }
-        
-        
-        
+
+        const input = "downloads/documentos/projeto_final_v2.pdf";
+        console.log(createCleanName(input));
 
     </script>
 </body>
