@@ -633,64 +633,115 @@
         // ______________________________________
 
 
-        class BankAccount{
-            #bankBalance;
-            #historico;
+        // class BankAccount{
+        //     #bankBalance;
+        //     #historico;
 
-            constructor(){
-                this.#bankBalance = 0;
-                this.#historico = [];
-            }
+        //     constructor(){
+        //         this.#bankBalance = 0;
+        //         this.#historico = [];
+        //     }
             
-            #valueValidation(value){
-                if(typeof value === "number" && value > 0){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
+        //     #valueValidation(value){
+        //         if(typeof value === "number" && value > 0){
+        //             return true;
+        //         }
+        //         else{
+        //             return false;
+        //         }
+        //     }
 
-            #register(type, value){
-                this.#historico.push(`${type}: R$${value}`);
-            }
+        //     #register(type, value){
+        //         this.#historico.push(`${type}: R$${value}`);
+        //     }
 
-            deposit(value){
-               if(!this.#valueValidation(value)) return "Invalid value";
+        //     deposit(value){
+        //        if(!this.#valueValidation(value)) return "Invalid value";
 
-                this.#bankBalance += value;
-                this.#register("Deposit", value);
-                return `Success: R$ ${value} deposited.`;
-            }
+        //         this.#bankBalance += value;
+        //         this.#register("Deposit", value);
+        //         return `Success: R$ ${value} deposited.`;
+        //     }
 
-            withdraw(value){
-                if(!this.#valueValidation(value)) return "Invalid value";
+        //     withdraw(value){
+        //         if(!this.#valueValidation(value)) return "Invalid value";
         
-                if(value > this.#bankBalance) return "Insufficient balance";
+        //         if(value > this.#bankBalance) return "Insufficient balance";
 
-                this.#bankBalance -= value;
-                this.#register("Withdraw", value);
+        //         this.#bankBalance -= value;
+        //         this.#register("Withdraw", value);
 
-                return `Success: R$ ${value} withdrawn.`;
-            }
+        //         return `Success: R$ ${value} withdrawn.`;
+        //     }
 
-            getStatement(){
-                return{
-                    transactions: [...this.#historico],
-                    finalBalance: `R$ ${this.#bankBalance.toFixed(2)}`
-                };
+        //     getStatement(){
+        //         return{
+        //             transactions: [...this.#historico],
+        //             finalBalance: `R$ ${this.#bankBalance.toFixed(2)}`
+        //         };
+        //     }
+        // }
+
+
+        // const myAccount = new BankAccount();
+
+        // console.log(myAccount.deposit(100));
+        // console.log(myAccount.withdraw(55));
+        // console.log(myAccount.withdraw(-50));
+        // console.log(myAccount.getStatement());
+
+
+        // _______________________________________________________________________________
+
+
+        // Applying singleton
+            // class Configuracao {
+            //     constructor() {
+            //         this.tema = "claro";
+            //         this.idioma = "pt-br";
+            //         console.log("Instância de Configuração Criada!");
+            //     }
+            // }
+
+            // // Parte A do Sistema (ex: Barra de Navegação)
+            // const configNav = new Configuracao();
+            // configNav.tema = "escuro"; 
+            // console.log("Nav:", configNav.tema); // Saída: escuro
+
+            // // Parte B do Sistema (ex: Rodapé)
+            // const configFooter = new Configuracao();
+            // console.log("Footer:", configFooter.tema); // Saída: claro (ERRO! Deveria ser escuro)
+
+            // console.log(configNav === configFooter); // false (São objetos diferentes na memória)
+
+        class Configuracao {
+            // O segredo: a instância deve ser ESTÁTICA, ela vai ficar guardada na memoria global da classe
+            static #instancia; 
+            
+            constructor() {
+                //Se a classe já tem uma instância salva, retorne ELA em vez de criar uma nova
+                if(Configuracao.#instancia){
+                    return Configuracao.#instancia;
+                }
+
+                // Se chegou aqui, é a primeira vez. Vamos configurar o objeto.
+                this.tema = "claro";
+                this.idioma = "pt-br";
+                // Salve este objeto (this) na variável estática da classe
+                Configuracao.#instancia = this;
             }
         }
 
+        // Parte A do Sistema (ex: Barra de Navegação)
+        const configNav = new Configuracao();
+        configNav.tema = "escuro"; 
+        console.log("Nav:", configNav.tema); // Saída: escuro
 
-        const myAccount = new BankAccount();
+        // Parte B do Sistema (ex: Rodapé)
+        const configFooter = new Configuracao();
+        console.log("Footer Tema:", configFooter.tema); // SAÍDA: escuro (AGORA SIM!)
 
-        console.log(myAccount.deposit(100));
-        console.log(myAccount.withdraw(55));
-        console.log(myAccount.withdraw(-50));
-        console.log(myAccount.getStatement());
-
-
+        console.log(configNav === configFooter); // true (são exatamente o mesmo objeto na memória)
 
 
 
