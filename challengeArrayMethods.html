@@ -215,20 +215,82 @@
 
         // _______________________________________
 
-        function generateSlug(title, maxWords){
-            const formatSlug = title
-            .toLowerCase()
-            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-            .split(" ")
-            .slice(0, maxWords)
-            .join("-");
+        // function generateSlug(title, maxWords){
+        //     const formatSlug = title
+        //     .toLowerCase()
+        //     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        //     .split(" ")
+        //     .slice(0, maxWords)
+        //     .join("-");
 
-            return formatSlug;
+        //     return formatSlug;
+        // }
+
+        // const titleInput = "As 10 Melhores Práticas de Programação em 2026";
+
+        // console.log(generateSlug(titleInput, 4));
+
+
+        // _______________________________________________________________________________
+
+
+        // const arr = [2, 4];
+        
+        // function contarMultiplosComuns(array, limite){
+        //     let quantityNumDivisivel = 0;
+
+        //     for(let i=1; i<=limite; i++){
+        //         // O .every() verifica se TODOS os elementos do array dividem o 'i' perfeitamente
+        //         const everyoneDivides = array.every(el => i % el === 0);
+
+        //         if(everyoneDivides){
+        //             quantityNumDivisivel +=1;
+        //         }
+        //     }
+
+        //     return quantityNumDivisivel;
+        // }
+        // console.log(contarMultiplosComuns(arr, 15));
+        // ____________________________________________
+        // const arr = [12, 24];
+        
+        // function contarMultiplosComuns(array, limite){
+        //     const findDivisivel = [];
+
+        //     for(let i=1; i<=limite; i++){
+        //         // O .every() verifica se TODOS os elementos do array dividem o 'i' perfeitamente
+        //         const everyoneDivides = array.every(el => el % i === 0);
+
+        //         if(everyoneDivides){
+        //             findDivisivel.push(i);
+        //         }
+        //     }
+
+        //     return quantityNumDivisivel;
+        // }
+        // console.log(contarMultiplosComuns(arr, 20));
+        // ____________________________________________
+        const arrA = [2,4];
+        const arrB = [16,32];
+
+        function getTotalX(a, b) {
+            let quantityNumDivisivel = 0;
+            const maxNumA = Math.max(...a);
+            const minNumB = Math.min(...b);
+
+            for(let i=maxNumA; i<=minNumB; i++){
+                const everyoneDividesA = a.every(el => i % el === 0);
+                const everyoneDividesB = b.every(el => el % i === 0);
+
+                if(everyoneDividesA && everyoneDividesB){
+                    quantityNumDivisivel +=1;
+                }
+            }
+            return quantityNumDivisivel;
         }
 
-        const titleInput = "As 10 Melhores Práticas de Programação em 2026";
 
-        console.log(generateSlug(titleInput, 4));
+
 
     </script>
 </body>
