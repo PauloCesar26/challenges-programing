@@ -548,18 +548,77 @@
 
             // 15
 
-        function diagonalDifference(arr){
-            let d1 = 0, d2 = 0;
+        // function diagonalDifference(arr){
+        //     let d1 = 0, d2 = 0;
             
-            for(let i=0; i< arr.length; i++){
-                d1 += arr[i][i]; //Aqui estou pegando a primeira diagonal: arr[0][0] - primeira linha e primeira coluna e assim por diante
-                d2 += arr[i][arr.length-1 - i]; //mesma coisa com a diagonal secundaria, só que aqui ele tem que fazer ao contrario 
+        //     for(let i=0; i< arr.length; i++){
+        //         d1 += arr[i][i]; //Aqui estou pegando a primeira diagonal: arr[0][0] - primeira linha e primeira coluna e assim por diante
+        //         d2 += arr[i][arr.length-1 - i]; //mesma coisa com a diagonal secundaria, só que aqui ele tem que fazer ao contrario 
+        //     }
+            
+        //     return Math.abs(d1 - d2); //Math.abs retorna um valor absoluto sem sinal de negativo
+        // }
+
+
+        // _______________________________________________________________________________
+
+
+        function analyzeTemperatures(leituras){
+            let recordeMax = leituras[0];
+            let recordeMin = leituras[0];
+            let subiu = 0;
+            let caiu = 0;
+
+            for(let i=1; i<leituras.length; i++){
+                let atual = leituras[i];
+
+                if(atual > recordeMax){
+                    recordeMax = atual;
+                    subiu++;
+                }
+                else if(atual < recordeMin){
+                    recordeMin = atual;
+                    caiu++;
+                }
             }
-            
-            return Math.abs(d1 - d2); //Math.abs retorna um valor absoluto sem sinal de negativo
+
+            const result = {
+                maximaFinal: recordeMax,
+                minimaFinal: recordeMin, 
+                vezesQueSubiu: subiu, 
+                vezesQueCaiu: caiu
+            }
+
+            return result;
         }
 
 
+        // _____________________________________
+
+
+        function analyzeTendencias(prices){
+            let recordeMax = prices[0] || 0;
+            let recordeMin = prices[0] || 0;
+            let max = 0;
+            let min = 0;
+
+            for(let i=1; i<prices.length; i++){
+                let current = prices[i];
+
+                if(current > recordeMax){
+                    recordeMax = current;
+                    max++;
+                }
+                else if(current < recordeMin){
+                    recordeMin = current;
+                    min++;
+                }
+            }
+
+            const result = [max, min];
+
+            return result;
+        }
 
 
 
