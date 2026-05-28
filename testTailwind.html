@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="/static/css/output.css" rel="stylesheet"> -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <script>
+    if(localStorage.getItem("dark")){
+      document.documentElement.classList.add("dark");
+    }
+  </script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      transition: 900ms;
+    }
+  </style>
+  <title>WebApp</title>
+</head>
+<body class="flex min-h-screen w-full flex-col bg-stone-100 text-stone-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <div class="flex min-h-screen items-center justify-center bg-stone-100 px-4 dark:bg-neutral-950">
+    <div
+      class="w-full max-w-md rounded-2xl border border-stone-300 bg-white/90 pb-8 pl-8 pr-8 shadow-2xl backdrop-blur-sm
+      dark:border-neutral-800 dark:bg-neutral-900/90"
+    >
+        <header>
+            <div  class="flex items-center w-full p-4 justify-end">
+                <input type="checkbox" name="change-theme" id="change-theme" class="hidden">
+                <label for="change-theme" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun block dark:hidden"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon hidden dark:block"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+                </label>
+            </div>
+        </header>
+      <div class="mb-8 flex flex-col items-center space-y-4">
+        <div
+          class="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-300
+          bg-amber-50 text-sm font-semibold tracking-widest text-amber-700 shadow-md
+          dark:border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-400"
+        >
+          LOGO
+        </div>
+
+        <div class="text-center">
+          <h1
+            class="text-3xl font-bold tracking-tight text-stone-900
+            dark:text-neutral-100"
+          >
+            Bem-vindo de volta
+          </h1>
+
+          <p
+            class="mt-2 text-sm text-stone-500
+            dark:text-neutral-400"
+          >
+            Entre com suas credenciais para acessar
+          </p>
+        </div>
+
+      </div>
+
+      <form class="space-y-5" action="/webapp/login" method="post">
+
+        <div class="space-y-2">
+
+          <label
+            for="name"
+            class="block text-sm font-medium text-stone-700 dark:text-neutral-300"
+          >
+            Nome
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            name="userName"
+            placeholder="Digite seu nome"
+            autocomplete="current-name"
+            class="w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm
+            text-stone-900 placeholder:text-stone-400 outline-none transition-all duration-200
+
+            focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10
+
+            dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100
+            dark:placeholder:text-neutral-500 dark:focus:border-amber-400
+            dark:focus:ring-amber-400/10"
+          />
+
+        </div>
+
+        <div class="space-y-2">
+
+          <label
+            for="password"
+            class="block text-sm font-medium text-stone-700 dark:text-neutral-300"
+          >
+            Senha
+          </label>
+
+          <input
+            id="password"
+            type="password"
+            name="userPassword"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+            class="w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 text-sm
+            text-stone-900 placeholder:text-stone-400 outline-none transition-all duration-200
+
+            focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10
+
+            dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-100
+            dark:placeholder:text-neutral-500 dark:focus:border-amber-400
+            dark:focus:ring-amber-400/10"
+          />
+
+        </div>
+
+        <div class="flex justify-end">
+
+          <button
+            id="open-modal"
+            type="button"
+            class="text-sm text-stone-500 transition-colors hover:text-amber-600
+            dark:text-neutral-400 dark:hover:text-amber-400"
+          >
+            Esqueceu a senha?
+        </button>
+
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-xl border border-amber-500/30
+          bg-amber-500 py-3 text-sm font-semibold tracking-wide text-neutral-950
+          shadow-lg shadow-amber-500/20 transition-all duration-300
+
+          hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/30
+
+          dark:bg-amber-500 dark:text-neutral-950 dark:hover:bg-amber-400"
+        >
+          Entrar
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+    <div
+      id="fade"
+      class="fixed inset-0 bg-black/70 z-10 transition-all duration-500 opacity-0 pointer-events-none"></div>
+    <div
+      id="modal"
+      class="fixed inset-0 z-20 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500">
+      <div
+        class="w-[500px] max-w-[90%] rounded-lg bg-white p-5 shadow-2xl scale-95 transition-all duration-500 dark:bg-neutral-900"
+        id="modal-content">
+        <div class="flex justify-between items-center border-b border-black mb-4 pb-4">
+          <h2 class="text-2xl font-semibold">
+            Modal
+          </h2>
+
+          <button
+            id="close-modal"
+            class="px-5 py-2 bg-blue-600 text-white rounded cursor-pointer opacity-80 text-lg transition-all duration-300 hover:opacity-100"
+          >
+            Fechar
+          </button>
+        </div>
+
+        <div id="modal-body">
+          <p class="mb-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Accusantium, assumenda. Est similique sint et commodi fuga
+            obcaecati architecto itaque officiis!
+          </p>
+
+          <p class="mb-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Accusantium, assumenda. Est similique sint et commodi fuga
+            obcaecati architecto itaque officiis!
+          </p>
+        </div>
+      </div>
+    </div>
+  
+
+    <script>
+        const changeThemeBtn = document.querySelector("#change-theme");
+
+        const openModal = document.querySelector("#open-modal");
+        const closeModal = document.querySelector("#close-modal");
+        const modal = document.querySelector("#modal");
+        const fade = document.querySelector("#fade");
+
+        function toggleDarkMode(){
+            document.documentElement.classList.toggle("dark");
+        }
+        function loadTheme(){
+            const darkMode = localStorage.getItem("dark");
+
+            if(darkMode){
+                document.documentElement.classList.add("dark");
+                changeThemeBtn.checked = true;
+            }
+        }
+
+        changeThemeBtn.addEventListener("change", () => {
+            document.documentElement.classList.toggle("dark");
+
+            if(document.documentElement.classList.contains("dark")){
+                localStorage.setItem("dark", "1");
+            } 
+            else{
+                localStorage.removeItem("dark");
+            }
+        });
+
+        loadTheme();
+
+        const toggleModal = () => {
+          fade.classList.toggle("opacity-0");
+          fade.classList.toggle("pointer-events-none");
+
+          modal.classList.toggle("opacity-0");
+          modal.classList.toggle("pointer-events-none");
+
+          modal.classList.toggle("scale-95");
+          modal.classList.toggle("scale-100");
+        };
+
+        [openModal, closeModal].forEach((el) => {
+          el.addEventListener("click", () => toggleModal());
+        });
+    </script>
+</body>
+</html>
